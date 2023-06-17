@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "main":"./App.jsx",
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "Neubolt",
+    "slug": "Neubolt"
+  }
+}
