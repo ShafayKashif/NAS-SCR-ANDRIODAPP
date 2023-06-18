@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Image,
 } from "react-native";
-import { ActivityIndicator } from "react-native-paper";
+import LargeButton from "../components/LargeButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Loading = ({ navigation }) => {
+const LandingPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
@@ -23,12 +23,26 @@ const Loading = ({ navigation }) => {
           alignItems: "center",
           width: 300,
           height: 80,
-          marginBottom: 30,
+          marginBottom:150,
         }}
       />
-      <ActivityIndicator animating={true} color="#58AA42" size="large" />
+
+      <LargeButton
+        textDisplay="Login"
+        backgroundColor="#58AA42"
+        textColor="#FFFFFF"
+        redirectTo="Loading"
+      />
+
+      <LargeButton
+        textDisplay="Sign Up"
+        backgroundColor="#F6F4F4"
+        textColor="#000000"
+        redirectTo="SignUpOption"
+      />
+
     </View>
   );
 };
 
-export default Loading;
+export default LandingPage;
