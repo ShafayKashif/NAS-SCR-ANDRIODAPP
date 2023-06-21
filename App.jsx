@@ -6,21 +6,29 @@ import LandingPage from './app/pages/LandingPage';
 import Loading from './app/components/Loading';
 import SignUpOption from './app/pages/SignUpOption';
 import SignUp from './app/pages/SignUp';
-
+import Notifications from './app/pages/Notifications';
+import SignIn from './app/pages/SignIn';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
   
-  const screenoptions={headerShown:false}
+  const screenOptions={headerShown:false}
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Landing'>
-        <Stack.Screen options={screenoptions} name="Landing" component={LandingPage} />
-        <Stack.Screen options={screenoptions} name="Loading" component={Loading} />
-        <Stack.Screen options={screenoptions} name="SignUpOption" component={SignUpOption} />
-        <Stack.Screen options={screenoptions} name="SignUp" component={SignUp} />
-      </Stack.Navigator>
-    </NavigationContainer>
+
+    <PaperProvider>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Landing'>
+          <Stack.Screen options={screenOptions} name="Landing" component={LandingPage} />
+          <Stack.Screen options={screenOptions} name="Loading" component={Loading} />
+          <Stack.Screen options={screenOptions} name="SignUpOption" component={SignUpOption} />
+          <Stack.Screen options={screenOptions} name="SignUp" component={SignUp} />
+          <Stack.Screen options={screenOptions} name="Notifications" component={Notifications} />
+          <Stack.Screen options={screenOptions} name="SignIn" component={SignIn} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </PaperProvider>
+
   );
 };
 

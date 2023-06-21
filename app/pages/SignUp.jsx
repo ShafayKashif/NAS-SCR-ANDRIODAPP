@@ -40,7 +40,12 @@ const SignUp = ({ navigation }) => {
         textDisplay="Sign Up"
         backgroundColor="white"
         textColor="black"
-        redirectTo="Loading"
+        redirectTo="Notifications"
+        props={{
+          NotificationMessage: "Your Sign Up Credentials have been submitted. Please wait for the admin to approve your account. Try again in 24 hours",
+          ButtonMessage: "Go to Login",
+          ButtonRedirect: "SignIn",
+        }}
       />
     </View>
   );

@@ -31,7 +31,7 @@ const LandingPage = ({ navigation }) => {
         textDisplay="Login"
         backgroundColor="#58AA42"
         textColor="#FFFFFF"
-        redirectTo="Loading"
+        redirectTo="SignIn"
       />
 
       <LargeButton
