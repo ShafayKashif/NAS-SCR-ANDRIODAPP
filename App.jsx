@@ -8,6 +8,7 @@ import SignUpOption from './app/pages/SignUpOption';
 import SignUp from './app/pages/SignUp';
 import Notifications from './app/pages/Notifications';
 import SignIn from './app/pages/SignIn';
+
 import { Provider as PaperProvider } from 'react-native-paper';
 
 const App = () => {
@@ -15,7 +16,6 @@ const App = () => {
   
   const screenOptions={headerShown:false}
   return (
-
     <PaperProvider>
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Landing'>
