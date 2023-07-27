@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { View, StyleSheet, Image} from "react-native";
 import { Text } from "react-native-paper";
 import LargeButton from "../components/LargeButton";
-import { useRoute } from "@react-navigation/native";
-import DividerWithText from "../components/DividerText";
 import TextField from "../components/TextField";
 import Checkbox from "../components/Checkbox"
-import Link from "../components/Hyperlink";
 
 const styles = StyleSheet.create({
   container: {
