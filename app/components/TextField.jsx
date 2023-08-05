@@ -31,7 +31,7 @@ const TextField = ({ label, value, onChange }) => {
         onChangeText={handleChangeText}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        secureTextEntry={label === 'Password' || label === 'Confirm Password'}
+        secureTextEntry={label === 'Password' || label === 'Confirm Password' || label==="Confirm New Password" ||label===" New Password" || label==="Previous Password"}
       />
       <View
         style={[styles.labelContainer, (text !== '' || isFocused) && styles.labelContainerActive]}

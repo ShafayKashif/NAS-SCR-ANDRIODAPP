@@ -16,6 +16,8 @@ import TechnicalSupportBss from './app/pages/TechnicalSupportBss';
 import TechnicalSupportDriver from './app/pages/TechnicalSupportDriver';
 import UpdateProfile from './app/pages/UpdateProfile';
 
+import ChangePassword from './app/pages/ChangePassword';
+
 import { Provider as PaperProvider } from 'react-native-paper';
 
 const App = () => {
@@ -33,6 +35,8 @@ const App = () => {
           <Stack.Screen options={screenOptions} name="Notifications" component={Notifications} />
           <Stack.Screen options={screenOptions} name="SignIn" component={SignIn} />
           <Stack.Screen options={screenOptions} name="TestFuncs" component={TestFunctions} />
+
+          <Stack.Screen options={screenOptions} name="ChangePassword" component={ChangePassword}/>
 
           <Stack.Screen options={screenOptions} name="DriverDashboard" component={DriverDashboard}/>
           <Stack.Screen options={screenOptions} name="TechnicalSupportDriver" component={TechnicalSupportDriver}/>

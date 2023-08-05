@@ -78,9 +78,9 @@ const StationDashboard = ({ navigation }) => {
         </Link>
 
         <Link
-          to="/SignUpOption"
+          to="/ChangePassword"
           style={{ color: "#58AA42", fontWeight: "bold" }}
-        >Technical Support</Link>
+        >Change Password</Link>
 
         <Link
           to="/SignUpOption"
