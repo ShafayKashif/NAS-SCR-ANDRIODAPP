@@ -8,13 +8,25 @@ const LargeButton = ({
   textColor,
   redirectTo,
   textDisplay,
-  props
+  props,
+  onPressFunction, // Additional function to execute
 }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate(redirectTo, props);
-  };
+  
+    if (onPressFunction && typeof onPressFunction === "function") {
+      onPressFunction(); // Execute the additional function if provided and it's a function
+    }
+    if (redirectTo && !props){
+      navigation.navigate(redirectTo);
+    }
+    else if (redirectTo && props){
+      navigation.navigate(redirectTo, props);
+    }
+
+
+};
 
   return (
     <Button
@@ -26,7 +38,6 @@ const LargeButton = ({
         marginTop: 20,
         height: 52,
         borderRadius: 9,
-
       }}
       contentStyle={{
         height: "100%",
@@ -45,3 +56,12 @@ const LargeButton = ({
 };
 
 export default LargeButton;
+
+// <LargeButton
+// backgroundColor="#007AFF"
+// textColor="#FFFFFF"
+// redirectTo="ScreenToNavigateTo"
+// textDisplay="Click Me!"
+// props={/* Your additional props for the screen to navigate to */}
+// onPressFunction={myAdditionalFunction} // Pass the additional function
+// /> 

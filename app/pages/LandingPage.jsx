@@ -41,6 +41,13 @@ const LandingPage = ({ navigation }) => {
         redirectTo="SignUpOption"
       />
 
+      <LargeButton
+        textDisplay="Test Button"
+        backgroundColor="#F6F4F4"
+        textColor="#000000"
+        redirectTo="DriverDashboard"
+      />
+
     </View>
   );
 };

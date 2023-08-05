@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, StyleSheet, Text } from 'react-native';
 
-const TextField = ({ label, value, onChange }) => {
+const DisabledTextField = ({ label, value, onChange }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [text, setText] = useState('');
 
@@ -32,6 +32,7 @@ const TextField = ({ label, value, onChange }) => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         secureTextEntry={label === 'Password' || label === 'Confirm Password'}
+        editable={false}
       />
       <View
         style={[styles.labelContainer, (text !== '' || isFocused) && styles.labelContainerActive]}
@@ -53,9 +54,10 @@ const styles = StyleSheet.create({
     height: 55,
     borderWidth: 2,
     borderRadius: 7,
-    borderColor: 'white',
+    borderColor: '#bbb9b9',
+    color: '#bbb9b9',
     paddingHorizontal: 10,
-    color: 'white',
+    opacity: 0.7, // Reduce the opacity to indicate that the input is disabled
     fontWeight: 'bold',
   },
   labelContainer: {
@@ -71,15 +73,15 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    color: 'white',
+    color: '#bbb9b9',
     backgroundColor:"#1E3648",
     fontWeight: 'bold',
   },
   labelActive: {
     fontSize: 14,
-    color: 'white',
+    color: '#bbb9b9',
     backgroundColor:"#1E3648"
   },
 });
 
-export default TextField;
+export default DisabledTextField;
