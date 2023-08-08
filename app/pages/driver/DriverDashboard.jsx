@@ -43,10 +43,7 @@ const DriverDashboard = ({ navigation }) => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      // Use an IIFE to make the useEffect function asynchronous
       fetchObtainedState();
-      // console.log("hi")
-      // console.log(driverInfo)
     }, 5000); // 5 seconds in milliseconds
   });
 
