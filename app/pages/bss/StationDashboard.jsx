@@ -15,6 +15,8 @@ import { FontAwesome } from "@expo/vector-icons"; // Assuming you have FontAweso
 import GreenBorderCase from "../../components/GreenBorderCase";
 import BatteryComponent from "../../components/BatteryComponent";
 
+import NavDriver from "../temporary/NavDriver";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -99,54 +101,7 @@ const StationDashboard = ({ navigation }) => {
         <ScrollView>
           <View>
             {/* Temporary */}
-            <Link
-              to="/ScheduleMaintenance"
-              style={{ color: "#58AA42", fontWeight: "bold", marginTop: 40 }}
-            >
-              Schedule Maintenance
-            </Link>
-
-            <Link
-              to="/TechnicalSupportBss"
-              style={{ color: "#58AA42", fontWeight: "bold" }}
-            >
-              Technical Support BSS
-            </Link>
-
-            <Link
-              to="/UpdateProfileBss"
-              style={{ color: "#58AA42", fontWeight: "bold" }}
-            >
-              Update Profile
-            </Link>
-
-            <Link
-              to="/ChangePassword"
-              style={{ color: "#58AA42", fontWeight: "bold" }}
-            >
-              Change Password
-            </Link>
-
-            <Link
-              to="/SignUpOption"
-              style={{ color: "#58AA42", fontWeight: "bold" }}
-            >
-              Update Profile
-            </Link>
-
-            <Link
-              to="/SignUpOption"
-              style={{ color: "#58AA42", fontWeight: "bold" }}
-            >
-              Change Password
-            </Link>
-
-            <Link
-              to="/SignUpOption"
-              style={{ color: "#58AA42", fontWeight: "bold" }}
-            >
-              Package
-            </Link>
+            <NavDriver>hi</NavDriver>
 
             <Text>Day Fare: {rate} PKR</Text>
 

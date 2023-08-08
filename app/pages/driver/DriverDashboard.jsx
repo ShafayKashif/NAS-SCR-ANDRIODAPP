@@ -8,6 +8,8 @@ import { Link } from "@react-navigation/native";
 import BatteryComponent from "../../components/BatteryComponent";
 import GreenBorderCase from "../../components/GreenBorderCase";
 
+import NavBss from "../temporary/NavBss";
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -52,60 +54,13 @@ const DriverDashboard = ({ navigation }) => {
     <View style={styles.container}>
       {driverInfo ? (
         <View>
-          {/* Temporary */}
-          <Link
-            to="/TechnicalSupportDriver"
-            style={{ color: "#58AA42", fontWeight: "bold" }}
-          >
-            Tec
-          </Link>
-
-          <Link
-            to="/SignUpOption"
-            style={{ color: "#58AA42", fontWeight: "bold" }}
-          >
-            Efficiency Report
-          </Link>
-
-          <Link
-            to="/SignUpOption"
-            style={{ color: "#58AA42", fontWeight: "bold" }}
-          >
-            Feedback Form
-          </Link>
-
-          <Link
-            to="/TechnicalSupportDriver"
-            style={{ color: "#58AA42", fontWeight: "bold" }}
-          >
-            Technical Support
-          </Link>
-
-          <Link
-            to="/SignUpOption"
-            style={{ color: "#58AA42", fontWeight: "bold" }}
-          >
-            Update Profile
-          </Link>
-
-          <Link
-            to="/SignUpOption"
-            style={{ color: "#58AA42", fontWeight: "bold" }}
-          >
-            Change Password
-          </Link>
-
-          <Link
-            to="/SignUpOption"
-            style={{ color: "#58AA42", fontWeight: "bold" }}
-          >
-            Package
-          </Link>
-
+          <NavBss/>
+          
           <Text style={{ color: "#FFFFFF" }}>Rickshaw Driver Dashboard</Text>
           <Text>Rickshaw Plate: {driverInfo.RickshawPlate}</Text>
           <Text>Distance Travelled: {driverInfo.distanceTravelled}</Text>
           <Text>Trees Saved: {driverInfo.treesSaved}</Text>
+
           <GreenBorderCase
                     initialWidth={270}
                     initialHeight={270}

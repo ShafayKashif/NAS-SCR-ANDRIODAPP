@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Image } from "react-native";
 import { Text } from "react-native-paper";
 import LargeButton from "../components/LargeButton";
@@ -109,19 +109,6 @@ const SignIn = ({ navigation }) => {
           Sign Up
         </Link>
       </Text>
-      <Link
-          to="/StationPerformance"
-          style={{ color: "#58AA42", fontWeight: "bold" }}
-        >
-          StationPerformance
-        </Link>
-
-        <Link
-          to="/TestScreen"
-          style={{ color: "#58AA42", fontWeight: "bold" }}
-        >
-          TestScreen
-        </Link>
     </View>
   );
 };

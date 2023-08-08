@@ -1,12 +1,12 @@
 import { View, StyleSheet, Image, Text } from "react-native";
-import LargeButton from "../components/LargeButton";
+import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
-import DividerWithText from "../components/DividerText";
-import TextField from "../components/TextField";
+import DividerWithText from "../../components/DividerText";
+import TextField from "../../components/TextField";
 import React, { useState } from "react";
-import {addRecord} from '../global/firebaseFunctions';
-import DropDown from "../components/DropDown";
-import LargeTextField from "../components/LargeTextField";
+import {addRecord} from '../../global/firebaseFunctions';
+import DropDown from "../../components/DropDown";
+import LargeTextField from "../../components/LargeTextField";
 
 
 const styles = StyleSheet.create({
@@ -54,9 +54,11 @@ const TechnicalSupportDriver = ({ navigation }) => {
   
 
 const options = [
-  { label: 'Technical', value: 'Technical' },
-  { label: 'Non Technical', value: 'Non Technical' },
-  { label: 'Other', value: 'Other' },
+  { label: 'Engine Trouble', value: 'Engine Trouble' },
+  { label: 'GPS Navigation Issue', value: 'GPS Navigation Issue' },
+  { label: 'App Crashes', value: 'App Crashes' },
+  { label: 'Connection Problems', value: 'Connection Problems' },
+  { label: 'Other Technical Issue', value: 'Other Technical Issue' },
 ];
 
 const handleOptionChange = (newValue) => {
@@ -66,7 +68,7 @@ const handleOptionChange = (newValue) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/img/Neubolt.png")}
+        source={require("../../assets/img/Neubolt.png")}
         style={{
           width: 300,
           height: 80,

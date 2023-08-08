@@ -45,7 +45,7 @@ const BatteryInformationStation = () => {
   return info ? (
     <View style={styles.container}>
           <Image
-        source={require("../assets/img/Neubolt.png")}
+        source={require("../../assets/img/Neubolt.png")}
         style={{
           width: 300,
           height: 80,

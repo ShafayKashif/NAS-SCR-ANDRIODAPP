@@ -9,7 +9,6 @@ import React, { useState} from "react";
 import { auth } from "../config/firebase";
 import { reauthenticateWithCredential, EmailAuthProvider, updatePassword } from "firebase/auth";
 
-// FIX: This
 const styles = StyleSheet.create({
   container: {
     flex: 1,

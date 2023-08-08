@@ -54,9 +54,13 @@ const TechnicalSupportBss = ({ navigation }) => {
   
 
 const options = [
-  { label: 'Technical', value: 'Technical' },
-  { label: 'Non Technical', value: 'Non Technical' },
-  { label: 'Other', value: 'Other' },
+  { label: 'Charging Cable Malfunction', value: 'Charging Cable Malfunction' },
+  { label: 'Charging Station Communication Error', value: 'Charging Station Communication Error' },
+  { label: 'Slow Charging or No Charging', value: 'Slow Charging or No Charging' },
+  { label: 'Charging Station Offline', value: 'Charging Station Offline' },
+  { label: 'Incompatible Connector Type', value: 'Incompatible Connector Type' },
+  { label: 'Payment or Billing Issues', value: 'Payment or Billing Issues' },
+  { label: 'Other Technical Issue', value: 'Other Technical Issue' },
 ];
 
 const handleOptionChange = (newValue) => {
@@ -66,7 +70,7 @@ const handleOptionChange = (newValue) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require("../assets/img/Neubolt.png")}
+        source={require("../../assets/img/Neubolt.png")}
         style={{
           width: 300,
           height: 80,
