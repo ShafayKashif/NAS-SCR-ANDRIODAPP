@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getRecordById, getRecord } from "../global/firebaseFunctions";
+import { getRecordById, getRecord } from "../../global/firebaseFunctions";
 import {
   Text,
   StyleSheet,
@@ -8,12 +8,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { where } from "firebase/firestore";
-import { auth } from "../config/firebase";
-import Loading from "../components/Loading";
+import { auth } from "../../config/firebase";
+import Loading from "../../components/Loading";
 import { Link } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons"; // Assuming you have FontAwesome or a similar icon library
-import GreenBorderCase from "../components/GreenBorderCase";
-import BatteryComponent from "../components/BatteryComponent";
+import GreenBorderCase from "../../components/GreenBorderCase";
+import BatteryComponent from "../../components/BatteryComponent";
 
 const styles = StyleSheet.create({
   container: {

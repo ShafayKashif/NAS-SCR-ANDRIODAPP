@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {addRecord, deleteRecord, updateRecord, getRecords, getRecordById} from '../global/firebaseFunctions'
+import {addRecord, deleteRecord, updateRecord, getRecords, getRecordById} from '../../global/firebaseFunctions'
 import { View, Text, Button } from 'react-native';
 
 const handleAddRecord = () => {

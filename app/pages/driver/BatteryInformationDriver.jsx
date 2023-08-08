@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, ScrollView, Image } from "react-native";
-import DividerWithText from "../components/DividerText";
-import BatteryInformationCard from "../components/BatteryInformationCard";
-import { auth } from "../config/firebase";
-import { getRecordById, getRecord } from "../global/firebaseFunctions";
-import Loading from "../components/Loading";
+import DividerWithText from "../../components/DividerText";
+import BatteryInformationCard from "../../components/BatteryInformationCard";
+import { auth } from "../../config/firebase";
+import { getRecordById, getRecord } from "../../global/firebaseFunctions";
+import Loading from "../../components/Loading";
 import { where } from "firebase/firestore";
 
 

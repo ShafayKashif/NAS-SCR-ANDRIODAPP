@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Image } from "react-native";
 import { Text } from "react-native-paper";
-import LightGreenCase from "../components/LightGreenCase";
-import Chart from "../components/Chart";
-import BatteryInformationCard from "../components/BatteryInformationCard";
+import LightGreenCase from "../../components/LightGreenCase";
+import Chart from "../../components/Chart";
+import BatteryInformationCard from "../../components/BatteryInformationCard";
 
 const styles = StyleSheet.create({
   container: {

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 });
 
 
-const UpdateProfileBss = ({ navigation }) => {
+const EditProfile = ({ navigation }) => {
   const [error,setError] = useState('');
 
   const [name, setName] = useState('');
@@ -115,4 +115,4 @@ const UpdateProfileBss = ({ navigation }) => {
   );
 };
 
-export default UpdateProfileBss;
+export default EditProfile;

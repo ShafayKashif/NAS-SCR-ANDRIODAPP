@@ -1,10 +1,10 @@
 import { View, StyleSheet, Image, Text } from "react-native";
-import LargeButton from "../components/LargeButton";
+import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
-import DividerWithText from "../components/DividerText";
-import TextField from "../components/TextField";
+import DividerWithText from "../../components/DividerText";
+import TextField from "../../components/TextField";
 import React, { useState } from "react";
-import {addRecord} from '../global/firebaseFunctions';
+import {addRecord} from '../../global/firebaseFunctions';
 
 
 const styles = StyleSheet.create({

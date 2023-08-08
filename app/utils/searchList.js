@@ -5,4 +5,4 @@ export function searchListOfObjects(objectsList, searchField, searchValue) {
       }
     }
     return null;
-}
+  }

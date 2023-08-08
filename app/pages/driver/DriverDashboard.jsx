@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { getRecord, getRecordById } from "../global/firebaseFunctions";
+import { getRecord, getRecordById } from "../../global/firebaseFunctions";
 import { Text, StyleSheet, View } from "react-native";
 import { where } from "firebase/firestore";
-import { auth } from "../config/firebase";
-import Loading from "../components/Loading";
+import { auth } from "../../config/firebase";
+import Loading from "../../components/Loading";
 import { Link } from "@react-navigation/native";
-import BatteryComponent from "../components/BatteryComponent";
-import GreenBorderCase from "../components/GreenBorderCase";
+import BatteryComponent from "../../components/BatteryComponent";
+import GreenBorderCase from "../../components/GreenBorderCase";
 
 const styles = StyleSheet.create({
   container: {

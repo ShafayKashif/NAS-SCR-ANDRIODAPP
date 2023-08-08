@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; // Assuming you have FontAwesome or a similar icon library
-import GreenBorderCase from '../components/GreenBorderCase';
+import GreenBorderCase from '../../components/GreenBorderCase';
 
 const TestCarousel = () => {
   const [showFirst, setShowFirst] = useState(true);
