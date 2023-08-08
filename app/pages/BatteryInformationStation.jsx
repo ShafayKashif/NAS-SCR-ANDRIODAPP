@@ -36,7 +36,7 @@ const BatteryInformationStation = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       fetchObtainedState();
-    }, 5000); // 5 seconds in milliseconds
+    }, 2000); // 5 seconds in milliseconds
 
   });
 
@@ -44,19 +44,20 @@ const BatteryInformationStation = () => {
 
   return info ? (
     <View style={styles.container}>
-     <ScrollView>
-        <Image
+          <Image
         source={require("../assets/img/Neubolt.png")}
         style={{
           width: 300,
           height: 80,
           marginBottom: 20,
+          marginTop:40,
+          justifyContent: 'center',
+          alignItems:'center',
         }}
       />
+         <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
+     <ScrollView>
       <View>
-
-      <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
-
       <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
         {Object.keys(info.batterySlots).map((slotKey, index) => (
           <View style={{ marginTop: 20, marginLeft: 20, display: 'flex', justifyContent:'center', alignItems:'center' }} key={slotKey}>

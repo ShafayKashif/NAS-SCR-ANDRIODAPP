@@ -7,6 +7,7 @@ import { getRecordById, getRecord } from "../global/firebaseFunctions";
 import Loading from "../components/Loading";
 import { where } from "firebase/firestore";
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -39,7 +40,7 @@ const BatteryInformationDriver = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       fetchObtainedState();
-    }, 5000); // 5 seconds in milliseconds
+    }, 2000); // 5 seconds in milliseconds
   });
 
 
@@ -47,35 +48,40 @@ const BatteryInformationDriver = () => {
 
   return info ? (
     <View style={styles.container}>
-      <Image
+         <Image
         source={require("../assets/img/Neubolt.png")}
         style={{
           width: 300,
           height: 80,
           marginBottom: 20,
+          marginTop:40,
+          justifyContent: 'center',
+          alignItems:'center',
         }}
       />
-      <View style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-      <ScrollView>
-      <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
+         <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
+     <ScrollView>
+      <View>
+
+   
 
       <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
         {Object.keys(info.batterySlots).map((slotKey, index) => (
-          <View style={{ marginTop: 20 }} key={slotKey}>
+          <View style={{ marginTop: 20, marginLeft: 20, display: 'flex', justifyContent:'center', alignItems:'center' }} key={slotKey}>
             <BatteryInformationCard
               id={info.batterySlots[slotKey].batteryID}
               charge={info.batterySlots[slotKey].charge}
               health={info.batterySlots[slotKey].stateOfHealth} 
               temperature={info.batterySlots[slotKey].temperature}
-              lastLabel={"Time remaining"}
-              timeHours={info.batterySlots[slotKey].timeToFullCharge}
+              lastLabel={"Time Remaining: "}
+              timeHours={info.batterySlots[slotKey].Time_Left}
               timeMin={0}
             />
           </View>
         ))}
       </View>
-      </ScrollView>
       </View>
+      </ScrollView>
     </View>
   ) : (
     <Loading />
