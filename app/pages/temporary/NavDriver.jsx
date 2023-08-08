@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 const NavDriver = () => {
     return (
-        <View>
+        <View style={{marginTop:40}}>
             <Link
                 to="/ChangePassword"
                 style={{ color: "#58AA42", fontWeight: "bold" }}
@@ -30,7 +30,7 @@ const NavDriver = () => {
                 to="/TechnicalSupportDriver"
                 style={{ color: "#58AA42", fontWeight: "bold" }}
             >
-                Technical Support
+                Technical Support Driver
             </Link>
 
             <Link

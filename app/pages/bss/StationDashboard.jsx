@@ -15,7 +15,7 @@ import { FontAwesome } from "@expo/vector-icons"; // Assuming you have FontAweso
 import GreenBorderCase from "../../components/GreenBorderCase";
 import BatteryComponent from "../../components/BatteryComponent";
 
-import NavDriver from "../temporary/NavDriver";
+import NavBss from '../temporary/NavBss';
 
 const styles = StyleSheet.create({
   container: {
@@ -97,37 +97,16 @@ const StationDashboard = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+
       {stationInfo ? (
         <ScrollView>
-          <View>
+        
+          <View style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
             {/* Temporary */}
-            <NavDriver>hi</NavDriver>
+            <NavBss />
+           
 
-            <Text>Day Fare: {rate} PKR</Text>
-
-            {/* {Object.keys(stationInfo.batterySlots).map((slotKey) => (
-              <View style={{ margin: 10 }} key={slotKey}>
-                <Text style={{ color: "white" }}>Battery Slot: {slotKey}</Text>
-                <Text style={{ color: "white" }}>
-                  Time Left:{" "}
-                  {stationInfo.batterySlots[slotKey].TimeToFullCharge}
-                </Text>
-                <Text style={{ color: "white" }}>
-                  Battery ID: {stationInfo.batterySlots[slotKey].batteryID}
-                </Text>
-                <Text style={{ color: "white" }}>
-                  Charge: {stationInfo.batterySlots[slotKey].charge}
-                </Text>
-                <Text style={{ color: "white" }}>
-                  State of Health:{" "}
-                  {stationInfo.batterySlots[slotKey].stateOfHealth}
-                </Text>
-                <Text style={{ color: "white" }}>
-                  Temperature: {stationInfo.batterySlots[slotKey].temperature}
-                </Text>
-              </View>
-            ))} */}
-
+            <Text style={{color: 'white'}}>Day Fare: {rate} PKR</Text>
             <View style={stylecontainer.container}>
               <View style={stylecontainer.carouselContainer}>
                 <TouchableOpacity

@@ -4,7 +4,7 @@ import { View } from 'react-native';
 
 const NavBss = () => {
     return (
-        <View>
+        <View style={{marginTop:40}}>
             <Link
                 to="/ChangePassword"
                 style={{ color: "#58AA42", fontWeight: "bold" }}
@@ -52,6 +52,12 @@ const NavBss = () => {
                 style={{ color: "#58AA42", fontWeight: "bold" }}
             >
                Battery Information Station
+            </Link>
+            <Link
+                to="/StationPerformance"
+                style={{ color: "#58AA42", fontWeight: "bold" }}
+            >
+               Station Performance
             </Link>
         </View>
     );

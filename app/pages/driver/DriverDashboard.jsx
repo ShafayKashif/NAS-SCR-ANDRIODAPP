@@ -8,7 +8,7 @@ import { Link } from "@react-navigation/native";
 import BatteryComponent from "../../components/BatteryComponent";
 import GreenBorderCase from "../../components/GreenBorderCase";
 
-import NavBss from "../temporary/NavBss";
+import NavDriver from "../temporary/NavDriver";
 
 const styles = StyleSheet.create({
   container: {
@@ -54,7 +54,7 @@ const DriverDashboard = ({ navigation }) => {
     <View style={styles.container}>
       {driverInfo ? (
         <View>
-          <NavBss/>
+          <NavDriver/>
           
           <Text style={{ color: "#FFFFFF" }}>Rickshaw Driver Dashboard</Text>
           <Text>Rickshaw Plate: {driverInfo.RickshawPlate}</Text>
