@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import LargeButton from "../components/LargeButton";
-import SmallButton from "../components/SmallButton";
+import TextField from "../components/TextField";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,31 +23,29 @@ const styles = StyleSheet.create({
   },
 });
 
-const BSS_Settings = () => {
+const Maintenance = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
-      <SmallButton
-        textDisplay="Edit Profile Information"
-        backgroundColor="white"
-        textColor="black"
-        redirectTo="BSS_EditProfile"
-      />
-      <SmallButton
-        textDisplay="Change Password"
-        backgroundColor="white"
-        textColor="black"
-        redirectTo="BSS_ChangePassword"
-      />
+      <Text style={styles.title}>BSS Maintenance</Text>
+      <TextField label="Email Address" />
+      <TextField label="Phone Number" />
+      <TextField label="CNIC" />
+      <TextField label="Date" />
+      <TextField label="Time" />
       <LargeButton
-        textDisplay="Log Out"
+        textDisplay="Schedule Maintenance"
         backgroundColor="white"
         textColor="black"
-        redirectTo="SignIn"
+        redirectTo="Notifications"
+        props={{
+          NotificationMessage: "Maintenance has been scheduled",
+          ButtonMessage: "Go to HomePage",
+          ButtonRedirect: "Homepage",
+        }}
       />
       <Text style={styles.footer}>Call our helpline:</Text>
     </View>
   );
 };
 
-export default BSS_Settings;
+export default Maintenance;

@@ -2,8 +2,6 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import LargeButton from "../components/LargeButton";
 import TextField from "../components/TextField";
-import Dropdown from "../components/Dropdown";
-import StarRating from "../components/StarRating";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,12 +16,6 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 20,
   },
-  subTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "white",
-    marginBottom: 10,
-  },
   footer: {
     fontSize: 20,
     color: "white",
@@ -31,29 +23,22 @@ const styles = StyleSheet.create({
   },
 });
 
-const driver_FeedbackForm = () => {
+const ChangePassword = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>BSS Feedback Form</Text>
-      <Dropdown
-        label="BSS Station"
-        options={["Station 1", "Station 2", "Station 3"]}
-      />
-      <Dropdown
-        label="Date/Time of visit"
-        options={["Date/Time 1", "Date/Time 2", "Date/Time 3"]}
-      />
-      <StarRating />
-      <TextField label="Comments" />
+      <Text style={styles.title}>Change Password</Text>
+      <TextField label="Previous Password" />
+      <TextField label="New Password" />
+      <TextField label="Confirm New Password" />
       <LargeButton
-        textDisplay="Submit Feedback"
+        textDisplay="Change Password"
         backgroundColor="white"
         textColor="black"
         redirectTo="Notifications"
-        navigationParams={{
-          NotificationMessage: "Your feedback has been submitted",
+        props={{
+          NotificationMessage: "Your password has been changed",
           ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "driver_Homepage",
+          ButtonRedirect: "Homepage",
         }}
       />
       <Text style={styles.footer}>Call our helpline:</Text>
@@ -61,4 +46,4 @@ const driver_FeedbackForm = () => {
   );
 };
 
-export default driver_FeedbackForm;
+export default ChangePassword;

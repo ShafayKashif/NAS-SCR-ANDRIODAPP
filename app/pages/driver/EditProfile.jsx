@@ -19,26 +19,27 @@ const styles = StyleSheet.create({
   footer: {
     fontSize: 20,
     color: "white",
-    marginTop: 20,
+    margin: 20,
   },
 });
 
-const BSS_ChangePassword = () => {
+const EditProfile = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Change Password</Text>
-      <TextField label="Previous Password" />
-      <TextField label="New Password" />
-      <TextField label="Confirm New Password" />
+      <Text style={styles.title}>Edit Profile</Text>
+      <TextField label="Email" />
+      <TextField label="Full Name" />
+      <TextField label="Phone Number" />
+      <TextField label="CNIC" />
       <LargeButton
-        textDisplay="Change Password"
+        textDisplay="Update Profile"
         backgroundColor="white"
         textColor="black"
         redirectTo="Notifications"
         props={{
-          NotificationMessage: "Your password has been updated",
+          NotificationMessage: "Your profile has been updated",
           ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "bss_Homepage",
+          ButtonRedirect: "Homepage",
         }}
       />
       <Text style={styles.footer}>Call our helpline:</Text>
@@ -46,4 +47,4 @@ const BSS_ChangePassword = () => {
   );
 };
 
-export default BSS_ChangePassword;
+export default EditProfile;

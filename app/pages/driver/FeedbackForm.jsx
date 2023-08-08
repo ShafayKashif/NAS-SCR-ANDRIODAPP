@@ -2,6 +2,8 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import LargeButton from "../components/LargeButton";
 import TextField from "../components/TextField";
+import Dropdown from "../components/Dropdown";
+import StarRating from "../components/StarRating";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,30 +18,42 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 20,
   },
+  subTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 10,
+  },
   footer: {
     fontSize: 20,
     color: "white",
-    marginTop: 20,
+    margin: 20,
   },
 });
 
-const BSS_EditProfile = () => {
+const FeedbackForm = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Edit Profile</Text>
-      <TextField label="Email" />
-      <TextField label="Full Name" />
-      <TextField label="Phone Number" />
-      <TextField label="CNIC" />
+      <Text style={styles.title}>BSS Feedback Form</Text>
+      <Dropdown
+        label="BSS Station"
+        options={["Station 1", "Station 2", "Station 3"]}
+      />
+      <Dropdown
+        label="Date/Time of visit"
+        options={["Date/Time 1", "Date/Time 2", "Date/Time 3"]}
+      />
+      <StarRating />
+      <TextField label="Comments" />
       <LargeButton
-        textDisplay="Update Profile"
+        textDisplay="Submit Feedback"
         backgroundColor="white"
         textColor="black"
         redirectTo="Notifications"
-        props={{
-          NotificationMessage: "Your profile has been updated",
+        navigationParams={{
+          NotificationMessage: "Your feedback has been submitted",
           ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "bss_Homepage",
+          ButtonRedirect: "Homepage",
         }}
       />
       <Text style={styles.footer}>Call our helpline:</Text>
@@ -47,4 +61,4 @@ const BSS_EditProfile = () => {
   );
 };
 
-export default BSS_EditProfile;
+export default FeedbackForm;

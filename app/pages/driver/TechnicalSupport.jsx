@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import LargeButton from "../components/LargeButton";
 import TextField from "../components/TextField";
+import Dropdown from "../components/Dropdown";
 
 const styles = StyleSheet.create({
   container: {
@@ -16,6 +17,12 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 20,
   },
+  subTitle: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+    marginBottom: 10,
+  },
   footer: {
     fontSize: 20,
     color: "white",
@@ -23,22 +30,24 @@ const styles = StyleSheet.create({
   },
 });
 
-const driver_ChangePassword = () => {
+const TechnicalSupport = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Change Password</Text>
-      <TextField label="Previous Password" />
-      <TextField label="New Password" />
-      <TextField label="Confirm New Password" />
+      <Text style={styles.title}>Technical Support</Text>
+      <Dropdown
+        label="Problem Type"
+        options={["Problem 1", "Problem 2", "Problem 3"]}
+      />
+      <TextField label="Type your problems here . . . " />
       <LargeButton
-        textDisplay="Change Password"
+        textDisplay="Report Problem"
         backgroundColor="white"
         textColor="black"
         redirectTo="Notifications"
         props={{
-          NotificationMessage: "Your password has been changed",
+          NotificationMessage: "Your problem has been reported",
           ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "driver_Homepage",
+          ButtonRedirect: "Homepage",
         }}
       />
       <Text style={styles.footer}>Call our helpline:</Text>
@@ -46,4 +55,4 @@ const driver_ChangePassword = () => {
   );
 };
 
-export default driver_ChangePassword;
+export default TechnicalSupport;

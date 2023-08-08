@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Picker } from "react-native";
 
 // pass in options for the picker
-const Dropdown = ({ label, options }) => {
+const DropDown = ({ label, options }) => {
   const [selectedValue, setSelectedValue] = useState(options[0]);
 
   return (
@@ -17,4 +17,4 @@ const Dropdown = ({ label, options }) => {
   );
 };
 
-export default Dropdown;
+export default DropDown;

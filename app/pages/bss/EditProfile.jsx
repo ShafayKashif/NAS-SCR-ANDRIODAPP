@@ -23,24 +23,23 @@ const styles = StyleSheet.create({
   },
 });
 
-const BSS_Maintenance = () => {
+const BSS_EditProfile = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>BSS Maintenance</Text>
-      <TextField label="Email Address" />
+      <Text style={styles.title}>Edit Profile</Text>
+      <TextField label="Email" />
+      <TextField label="Full Name" />
       <TextField label="Phone Number" />
       <TextField label="CNIC" />
-      <TextField label="Date" />
-      <TextField label="Time" />
       <LargeButton
-        textDisplay="Schedule Maintenance"
+        textDisplay="Update Profile"
         backgroundColor="white"
         textColor="black"
         redirectTo="Notifications"
         props={{
-          NotificationMessage: "Maintenance has been scheduled",
+          NotificationMessage: "Your profile has been updated",
           ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "bss_Homepage",
+          ButtonRedirect: "Homepage",
         }}
       />
       <Text style={styles.footer}>Call our helpline:</Text>
@@ -48,4 +47,4 @@ const BSS_Maintenance = () => {
   );
 };
 
-export default BSS_Maintenance;
+export default EditProfile;

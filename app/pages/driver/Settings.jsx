@@ -1,8 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import LargeButton from "../components/LargeButton";
-import Dropdown from "../components/Dropdown";
-import TextField from "../components/TextField";
+import SmallButton from "../components/SmallButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,29 +23,37 @@ const styles = StyleSheet.create({
   },
 });
 
-const BSS_ReportProblem = () => {
+const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Technical Support</Text>
-      <Dropdown
-        label="Problem Type"
-        options={["Problem 1", "Problem 2", "Problem 3"]} //add list of problems
-      />
-      <TextField label="Type your problems here . . . " />
-      <LargeButton
-        textDisplay="Report Problem"
+      <Text style={styles.title}>Settings</Text>
+      <SmallButton
+        textDisplay="Edit Profile Information"
         backgroundColor="white"
         textColor="black"
-        redirectTo="Notifications"
-        props={{
-          NotificationMessage: "Your problem has been reported",
-          ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "bss_Homepage",
-        }}
+        redirectTo="EditProfile"
+      />
+      <SmallButton
+        textDisplay="Change Password"
+        backgroundColor="white"
+        textColor="black"
+        redirectTo="ChangePassword" //
+      />
+      <SmallButton
+        textDisplay="Package"
+        backgroundColor="white"
+        textColor="black"
+        redirectTo="Package" //
+      />
+      <LargeButton
+        textDisplay="Log Out"
+        backgroundColor="white"
+        textColor="black"
+        redirectTo="SignIn"
       />
       <Text style={styles.footer}>Call our helpline:</Text>
     </View>
   );
 };
 
-export default BSS_ReportProblem;
+export default Settings;

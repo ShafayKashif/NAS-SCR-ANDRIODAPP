@@ -19,27 +19,26 @@ const styles = StyleSheet.create({
   footer: {
     fontSize: 20,
     color: "white",
-    margin: 20,
+    marginTop: 20,
   },
 });
 
-const driver_EditProfile = () => {
+const ChangePassword = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Edit Profile</Text>
-      <TextField label="Email" />
-      <TextField label="Full Name" />
-      <TextField label="Phone Number" />
-      <TextField label="CNIC" />
+      <Text style={styles.title}>Change Password</Text>
+      <TextField label="Previous Password" />
+      <TextField label="New Password" />
+      <TextField label="Confirm New Password" />
       <LargeButton
-        textDisplay="Update Profile"
+        textDisplay="Change Password"
         backgroundColor="white"
         textColor="black"
         redirectTo="Notifications"
         props={{
-          NotificationMessage: "Your profile has been updated",
+          NotificationMessage: "Your password has been updated",
           ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "driver_Homepage",
+          ButtonRedirect: "Homepage",
         }}
       />
       <Text style={styles.footer}>Call our helpline:</Text>
@@ -47,4 +46,4 @@ const driver_EditProfile = () => {
   );
 };
 
-export default driver_EditProfile;
+export default ChangePassword;

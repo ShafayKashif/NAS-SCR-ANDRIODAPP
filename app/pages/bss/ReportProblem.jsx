@@ -1,8 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import LargeButton from "../components/LargeButton";
-import TextField from "../components/TextField";
 import Dropdown from "../components/Dropdown";
+import TextField from "../components/TextField";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,26 +17,20 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 20,
   },
-  subTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "white",
-    marginBottom: 10,
-  },
   footer: {
     fontSize: 20,
     color: "white",
-    margin: 20,
+    marginTop: 20,
   },
 });
 
-const driver_TechnicalSupport = () => {
+const ReportProblem = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Technical Support</Text>
       <Dropdown
         label="Problem Type"
-        options={["Problem 1", "Problem 2", "Problem 3"]}
+        options={["Problem 1", "Problem 2", "Problem 3"]} //add list of problems
       />
       <TextField label="Type your problems here . . . " />
       <LargeButton
@@ -47,7 +41,7 @@ const driver_TechnicalSupport = () => {
         props={{
           NotificationMessage: "Your problem has been reported",
           ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "driver_Homepage",
+          ButtonRedirect: "Homepage",
         }}
       />
       <Text style={styles.footer}>Call our helpline:</Text>
@@ -55,4 +49,4 @@ const driver_TechnicalSupport = () => {
   );
 };
 
-export default driver_TechnicalSupport;
+export default ReportProblem;

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const driver_Settings = () => {
+const Settings = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Settings</Text>
@@ -31,19 +31,13 @@ const driver_Settings = () => {
         textDisplay="Edit Profile Information"
         backgroundColor="white"
         textColor="black"
-        redirectTo="driver_EditProfile"
+        redirectTo="EditProfile"
       />
       <SmallButton
         textDisplay="Change Password"
         backgroundColor="white"
         textColor="black"
-        redirectTo="driver_ChangePassword" //
-      />
-      <SmallButton
-        textDisplay="Package"
-        backgroundColor="white"
-        textColor="black"
-        redirectTo="Package" //
+        redirectTo="ChangePassword"
       />
       <LargeButton
         textDisplay="Log Out"
@@ -56,4 +50,4 @@ const driver_Settings = () => {
   );
 };
 
-export default driver_Settings;
+export default Settings;

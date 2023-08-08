@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const driver_Homepage = () => {
+const Homepage = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Neubolt</Text>
@@ -31,4 +31,4 @@ const driver_Homepage = () => {
   );
 };
 
-export default driver_Homepage;
+export default Homepage;
