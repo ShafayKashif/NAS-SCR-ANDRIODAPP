@@ -7,7 +7,7 @@ import Checkbox from "../components/Checkbox";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 import { where } from "firebase/firestore";
-import { getRecord, getRecords} from "../global/firebaseFunctions";
+import { getRecord} from "../global/firebaseFunctions";
 import { Link } from "@react-navigation/native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -109,6 +109,19 @@ const SignIn = ({ navigation }) => {
           Sign Up
         </Link>
       </Text>
+      <Link
+          to="/StationPerformance"
+          style={{ color: "#58AA42", fontWeight: "bold" }}
+        >
+          StationPerformance
+        </Link>
+
+        <Link
+          to="/TestScreen"
+          style={{ color: "#58AA42", fontWeight: "bold" }}
+        >
+          TestScreen
+        </Link>
     </View>
   );
 };

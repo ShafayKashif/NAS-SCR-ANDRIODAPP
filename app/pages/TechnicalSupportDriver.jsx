@@ -36,7 +36,7 @@ const TechnicalSupportDriver = ({ navigation }) => {
         "Problem Detail":problemDetail,
       }
     
-      addRecord('Technical Support BSS', newRecordData);
+      addRecord('Technical Support Driver', newRecordData);
      
 
       console.log('Submitted document!');

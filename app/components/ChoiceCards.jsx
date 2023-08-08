@@ -8,6 +8,10 @@ const ChoiceCards = () => {
   const [redirectTo, setRedirectTo] = useState("SignUpOption");
   const [person, setPerson] = useState({});
 
+  const handleSubmit =()=>{
+    
+  }
+
   const handleCard1Press = () => {
     setIsCard1Selected(true);
     setIsCard2Selected(false);

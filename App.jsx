@@ -15,7 +15,11 @@ import StationDashboard from './app/pages/StationDashboard';
 import TechnicalSupportBss from './app/pages/TechnicalSupportBss';
 import TechnicalSupportDriver from './app/pages/TechnicalSupportDriver';
 import UpdateProfile from './app/pages/UpdateProfile';
+import StationPerformance from './app/pages/StationPerformance';
+import TestCarousel from './app/pages/TestScreen';
 
+import BatteryInformationDriver from './app/pages/BatteryInformationDriver';
+import BatteryInformationStation from './app/pages/BatteryInformationStation';
 import ChangePassword from './app/pages/ChangePassword';
 
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -40,11 +44,18 @@ const App = () => {
 
           <Stack.Screen options={screenOptions} name="DriverDashboard" component={DriverDashboard}/>
           <Stack.Screen options={screenOptions} name="TechnicalSupportDriver" component={TechnicalSupportDriver}/>
+          <Stack.Screen options={screenOptions} name="BatteryInformationDriver" component={BatteryInformationDriver}/>
 
           <Stack.Screen options={screenOptions} name="StationDashboard" component={StationDashboard}/>
+          <Stack.Screen options={screenOptions} name="StationPerformance" component={StationPerformance}/>
           <Stack.Screen options={screenOptions} name="TechnicalSupportBss" component={TechnicalSupportBss}/>
           <Stack.Screen options={screenOptions} name="ScheduleMaintenance" component={ScheduleMaintenance}/>
-          <Stack.Screen options={screenOptions} name="UpdateProfileBss" component={UpdateProfile}/>
+          <Stack.Screen options={screenOptions} name="BatteryInformationStation" component={BatteryInformationStation}/>
+
+ 
+          <Stack.Screen options={screenOptions} name="UpdateProfile" component={UpdateProfile}/>
+
+          <Stack.Screen options={screenOptions} name="TestScreen" component={TestCarousel}/>
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>
