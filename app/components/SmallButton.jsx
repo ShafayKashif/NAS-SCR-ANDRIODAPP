@@ -9,12 +9,24 @@ const SmallButton = ({
   redirectTo,
   textDisplay,
   props,
+  onPressFunction, // Additional function to execute (optional)
 }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate(redirectTo, props);
-  };
+  
+    if (onPressFunction && typeof onPressFunction === "function") {
+      onPressFunction(); // Execute the additional function if provided and it's a function
+    }
+    if (redirectTo && !props){
+      navigation.navigate(redirectTo);
+    }
+    else if (redirectTo && props){
+      navigation.navigate(redirectTo, props);
+    }
+
+
+}; 
 
   return (
     <Button
@@ -26,7 +38,6 @@ const SmallButton = ({
         marginTop: 20,
         height: 52,
         borderRadius: 12,
-
       }}
       contentStyle={{
         height: "100%",

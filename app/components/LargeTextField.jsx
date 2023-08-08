@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, TextInput, StyleSheet, Text } from 'react-native';
 
-const TextField = ({ label, value, onChange }) => {
+const LargeTextField = ({ label, value, onChange }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [text, setText] = useState('');
 
@@ -31,7 +31,9 @@ const TextField = ({ label, value, onChange }) => {
         onChangeText={handleChangeText}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        secureTextEntry={label === 'Password' || label === 'Confirm Password' || label==="Confirm New Password" ||label===" New Password" || label==="Previous Password"}
+        secureTextEntry={label === 'Password' || label === 'Confirm Password'}
+        multiline={true} // Allow multiline input
+        textAlignVertical="top" // Align the text to the top
       />
       <View
         style={[styles.labelContainer, (text !== '' || isFocused) && styles.labelContainerActive]}
@@ -46,24 +48,26 @@ const TextField = ({ label, value, onChange }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop:20
+    marginTop: 20,
   },
   input: {
     minWidth: '85%',
-    height: 55,
+    maxWidth: '85%',
+    height: 200, // Remove fixed height
     borderWidth: 2,
     borderRadius: 7,
     borderColor: 'white',
     paddingHorizontal: 10,
     color: 'white',
     fontWeight: 'bold',
+    paddingTop: 20, // Add padding to the top
   },
   labelContainer: {
     position: 'absolute',
     left: 10,
     top: 16,
     paddingHorizontal: 5,
-    backgroundColor: "#1E3648",
+    backgroundColor: '#1E3648',
     fontWeight: 'bold',
   },
   labelContainerActive: {
@@ -72,14 +76,14 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     color: 'white',
-    backgroundColor:"#1E3648",
+    backgroundColor: '#1E3648',
     fontWeight: 'bold',
   },
   labelActive: {
     fontSize: 14,
     color: 'white',
-    backgroundColor:"#1E3648"
+    backgroundColor: '#1E3648',
   },
 });
 
-export default TextField;
+export default LargeTextField;
