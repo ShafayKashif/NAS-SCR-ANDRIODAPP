@@ -28,7 +28,6 @@ const DriverDashboard = ({ navigation }) => {
       const obtainedRickshaw = await getRecord("Rickshaw Driver", [
         where("email", "==", auth.currentUser.email),
       ]);
-      console.log(obtainedRickshaw)
       // console.log(obtainedRickshaw.assigned)
       const obtainedState = await getRecordById(
         "Rickshaw",
@@ -42,9 +41,13 @@ const DriverDashboard = ({ navigation }) => {
   };
 
   useEffect(() => {
+      fetchObtainedState();
+  },[]);
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       fetchObtainedState();
-    }, 5000); // 5 seconds in milliseconds
+    }, 30000); // 5 seconds in milliseconds
   });
 
   return (

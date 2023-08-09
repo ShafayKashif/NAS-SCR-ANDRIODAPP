@@ -32,11 +32,15 @@ const BatteryInformationStation = () => {
     } catch (err) {
     }
   };
+  
+  useEffect(() => {
+    fetchObtainedState();
+  },[]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       fetchObtainedState();
-    }, 2000); // 5 seconds in milliseconds
+    }, 30000); // 5 seconds in milliseconds
 
   });
 

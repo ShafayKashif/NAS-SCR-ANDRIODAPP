@@ -74,7 +74,7 @@ const ChangePassword = ({ navigation }) => {
 
       <LargeButton
         textDisplay="Report a Problem"
-        backgroundColor="green"
+        backgroundColor="#58AA42"
         textColor="white"
         redirectTo="Notifications"
         props={{
