@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import LargeButton from "../../components/LargeButton";
 import TextField from "../../components/TextField";
 import DropDown from "../../components/DropDown";
 import StarRating from "../../components/StarRating";
 import LargeTextField from "../../components/LargeTextField";
+import NavigatorBar from "../../components/NavigatorBar";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,23 +33,29 @@ const styles = StyleSheet.create({
   },
 });
 
+const FeedbackForm = ({ navigation }) => {
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
 
-const FeedbackForm = () => {
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsDriver");
+  };
 
-  const [station, setStation]=useState('')
-  const [date, setDate]=useState('')
-  const [comments, setComments]=useState('')
+  const [station, setStation] = useState("");
+  const [date, setDate] = useState("");
+  const [comments, setComments] = useState("");
 
   const optionsStations = [
-    { label: 'Station 1', value: 'Station 1' },
-    { label: 'Station 2', value: 'Station 2' },
-    { label: 'Station 3', value: 'Sttaion 3' },
+    { label: "Station 1", value: "Station 1" },
+    { label: "Station 2", value: "Station 2" },
+    { label: "Station 3", value: "Sttaion 3" },
   ];
-  
+
   const optionsDates = [
-    { label: 'Date/Time 1', value: 'Date/Time 1' },
-    { label: 'Date/Time 2', value: 'Date/Time 2' },
-    { label: 'Date/Time 3', value: 'Date/Time 3' },
+    { label: "Date/Time 1", value: "Date/Time 1" },
+    { label: "Date/Time 2", value: "Date/Time 2" },
+    { label: "Date/Time 3", value: "Date/Time 3" },
   ];
   const handleOptionChangeStation = (newValue) => {
     setStation(newValue);
@@ -60,15 +67,33 @@ const FeedbackForm = () => {
 
   return (
     <View style={styles.container}>
+      <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
       <Text style={styles.title}>BSS Feedback Form</Text>
 
-      <DropDown label="BSS Station" value={station} onChange={handleOptionChangeStation} options={optionsStations} /> 
-      <DropDown label="Date/Time of Visit" value={date} onChange={handleOptionChangeDate} options={optionsDates} /> 
+      <DropDown
+        label="BSS Station"
+        value={station}
+        onChange={handleOptionChangeStation}
+        options={optionsStations}
+      />
+      <DropDown
+        label="Date/Time of Visit"
+        value={date}
+        onChange={handleOptionChangeDate}
+        options={optionsDates}
+      />
 
-  
       <StarRating />
 
-      <LargeTextField label="Comments " value={comments} onChange={setComments} />
+      <LargeTextField
+        label="Comments "
+        value={comments}
+        onChange={setComments}
+      />
 
       <LargeButton
         textDisplay="Submit Feedback"

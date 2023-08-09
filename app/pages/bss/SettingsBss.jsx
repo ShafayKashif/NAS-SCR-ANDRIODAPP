@@ -6,6 +6,7 @@ import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
 import TextField from "../../components/TextField";
 import { auth } from "../../config/firebase";
+import NavigatorBar from "../../components/NavigatorBar";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,19 +28,31 @@ const styles = StyleSheet.create({
   },
 });
 
-const SettingsBss = () => {
+const SettingsBss = ({ navigation }) => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
-      // The user is now logged out
       console.log("User logged out successfully!");
     } catch (error) {
-      // An error occurred during the logout process
       console.log("Error logging out:", error);
     }
   };
+
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsBss");
+  };
+
   return (
     <View style={styles.container}>
+      <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
       <DividerWithText textDisplay={"Settings"} style={{ marginBottom: 20 }} />
       <SmallButton
         textDisplay="Edit Profile Information"
