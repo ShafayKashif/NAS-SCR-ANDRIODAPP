@@ -9,7 +9,7 @@ const LargeButton = ({
   redirectTo,
   textDisplay,
   props,
-  onPressFunction, // Additional function to execute
+  onPressFunction// Additional function to execute
 }) => {
   const navigation = useNavigation();
 
@@ -50,7 +50,7 @@ const LargeButton = ({
         },
       }}
     >
-      <Text style={{ fontSize: 20 }}>{textDisplay}</Text>
+      <Text style={{ fontSize: 20 }}> {textDisplay}</Text>
     </Button>
   );
 };
