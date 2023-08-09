@@ -13,10 +13,10 @@ const NavBss = () => {
             </Link>
 
             <Link
-                to="/UpdateProfile"
+                to="/EditProfile"
                 style={{ color: "#58AA42", fontWeight: "bold" }}
             >
-                Update Profile
+                Edit Profile
             </Link>
 
             <Link
@@ -58,6 +58,13 @@ const NavBss = () => {
                 style={{ color: "#58AA42", fontWeight: "bold" }}
             >
                Station Performance
+            </Link>
+
+            <Link
+                to="/SettingsBss"
+                style={{ color: "#58AA42", fontWeight: "bold" }}
+            >
+               SettingsBss
             </Link>
         </View>
     );

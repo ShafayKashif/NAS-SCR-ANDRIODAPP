@@ -1,7 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import LargeButton from "../components/LargeButton";
-import SmallButton from "../components/SmallButton";
+import LargeButton from "../../components/LargeButton";
+import SmallButton from "../../components/SmallButton";
+import { View, StyleSheet, Image, Text } from "react-native";
+import { useRoute } from "@react-navigation/native";
+import DividerWithText from "../../components/DividerText";
+import TextField from "../../components/TextField";
+import {auth} from '../../config/firebase';
 
 const styles = StyleSheet.create({
   container: {
@@ -23,10 +27,22 @@ const styles = StyleSheet.create({
   },
 });
 
-const Settings = () => {
+const SettingsDriver = () => {
+
+ const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      // The user is now logged out
+      console.log("User logged out successfully!");
+    } catch (error) {
+      // An error occurred during the logout process
+      console.log("Error logging out:", error);
+    }
+  };
+  
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
+      <DividerWithText textDisplay={"Settings"} style={{ marginBottom: 20 }} />
       <SmallButton
         textDisplay="Edit Profile Information"
         backgroundColor="white"
@@ -43,17 +59,17 @@ const Settings = () => {
         textDisplay="Package"
         backgroundColor="white"
         textColor="black"
-        redirectTo="Package" //
+        redirectTo="PackagePage" //
       />
       <LargeButton
         textDisplay="Log Out"
-        backgroundColor="white"
-        textColor="black"
+        backgroundColor="#58AA42"
+        textColor="white"
         redirectTo="SignIn"
+        onPressFunction={handleLogout}
       />
-      <Text style={styles.footer}>Call our helpline:</Text>
     </View>
   );
 };
 
-export default Settings;
+export default SettingsDriver;

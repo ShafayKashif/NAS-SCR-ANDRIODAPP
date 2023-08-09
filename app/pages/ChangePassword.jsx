@@ -65,14 +65,6 @@ const ChangePassword = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../assets/img/Neubolt.png")}
-        style={{
-          width: 300,
-          height: 80,
-          marginBottom: 20,
-        }}
-      />
       <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
 
       <TextField label="Previous Password" value={previousPassword} onChange={setPreviousPassword}/>

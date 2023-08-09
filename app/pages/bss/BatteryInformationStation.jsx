@@ -44,17 +44,6 @@ const BatteryInformationStation = () => {
 
   return info ? (
     <View style={styles.container}>
-          <Image
-        source={require("../../assets/img/Neubolt.png")}
-        style={{
-          width: 300,
-          height: 80,
-          marginBottom: 20,
-          marginTop:40,
-          justifyContent: 'center',
-          alignItems:'center',
-        }}
-      />
          <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
      <ScrollView>
       <View>

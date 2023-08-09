@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image, Text, TouchableOpacity, Linking } from "react-native";
 import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
@@ -16,7 +16,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-});
+  phoneNumber: {
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "#58AA42", // Green color for hyperlink
+}});
 
 
 const TechnicalSupportBss = ({ navigation }) => {
@@ -26,6 +30,12 @@ const TechnicalSupportBss = ({ navigation }) => {
 
   const route = useRoute();
   const dividertext = "Report a Problem"
+
+  const phoneNumber = process.env.PHONE;
+  const handlePhonePress = () => {
+    const phoneUrl = `tel:${phoneNumber}`;
+    Linking.openURL(phoneUrl);
+  };
 
   const handleSubmit = async (event) => {
 
@@ -69,32 +79,28 @@ const handleOptionChange = (newValue) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../assets/img/Neubolt.png")}
-        style={{
-          width: 300,
-          height: 80,
-          marginBottom: 20,
-        }}
-      />
       <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
       <DropDown label="Report a Problem" value={selectedProblem} onChange={handleOptionChange} options={options} /> 
       <LargeTextField label="Type your Problem" value={problemDetail} onChange={setProblemDetail} />
-    
+      <View style={{marginTop:80}}></View>
       <LargeButton
-        textDisplay="Report a Problem"
-        backgroundColor="white"
-        textColor="black"
+        textDisplay="Report Problem"
+        backgroundColor="#58AA42"
+        textColor="white"
         redirectTo="Notifications"
         props={{
           NotificationMessage: error||"Technical Support Report has been submitted",
           ButtonMessage: error?"Return back": "Go to Home",
-          ButtonRedirect: error? "ScheduleMaintenance" : "StationDashboard",
+          ButtonRedirect: error? "TechnicalSupportBss" : "StationDashboard",
         }}
         onPressFunction={handleSubmit}
       />
 
       <Text style={{color:'red'}}>{error}</Text>
+      <Text style={{color: 'white'}}>Call us on our helpline:</Text>
+      <TouchableOpacity onPress={handlePhonePress}>
+        <Text style={styles.phoneNumber}>{phoneNumber}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

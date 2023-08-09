@@ -13,10 +13,10 @@ const NavDriver = () => {
             </Link>
 
             <Link
-                to="/UpdateProfile"
+                to="/EditProfile"
                 style={{ color: "#58AA42", fontWeight: "bold" }}
             >
-                Update Profile
+                Edit Profile
             </Link>
 
             <Link
@@ -41,12 +41,39 @@ const NavDriver = () => {
             </Link>
 
             <Link
-                to="/SignUpOption"
+                to="/ChangePassword"
                 style={{ color: "#58AA42", fontWeight: "bold" }}
             >
                 Change Password
             </Link>
 
+            <Link
+                to="/PackagePage"
+                style={{ color: "#58AA42", fontWeight: "bold" }}
+            >
+                Package Page
+            </Link>
+
+            <Link
+                to="/SettingsDriver"
+                style={{ color: "#58AA42", fontWeight: "bold" }}
+            >
+                Settings Driver
+            </Link>
+
+            <Link
+                to="/EfficiencyReport"
+                style={{ color: "#58AA42", fontWeight: "bold" }}
+            >
+                Efficiency Report
+            </Link>
+
+            <Link
+                to="/FeedbackForm"
+                style={{ color: "#58AA42", fontWeight: "bold" }}
+            >
+                Feedback Form
+            </Link>
             {/* <Link
                 to="/SignUpOption"
                 style={{ color: "#58AA42", fontWeight: "bold" }}

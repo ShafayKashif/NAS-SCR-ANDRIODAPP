@@ -5,8 +5,10 @@ const LightGreenCase = ({ initialWidth, initialHeight, children }) => {
   return (
       <View
         style={{
-          justifyContent:'center',
-          alignItems:'center',
+          paddingTop:20,
+          justifyContent:'flex-start',
+          paddingLeft: 20,
+          // alignItems:'center',
           height: initialHeight,
           width: initialWidth,
           backgroundColor: '#e1f0dc',

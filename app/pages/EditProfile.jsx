@@ -83,14 +83,6 @@ const EditProfile = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../assets/img/Neubolt.png")}
-        style={{
-          width: 300,
-          height: 80,
-          marginBottom: 20,
-        }}
-      />
       <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
       <DisabledTextField label="Email address" value={auth.currentUser.email}/>
       <TextField label="Full Name" value={name} onChange={setName}/>
@@ -98,19 +90,20 @@ const EditProfile = ({ navigation }) => {
       <DisabledTextField label="CNIC" value={cnic} />
 
       <LargeButton
-        textDisplay="Report a Problem"
-        backgroundColor="white"
-        textColor="black"
+        textDisplay="Update Profile"
+        backgroundColor="#58AA42"
+        textColor="white"
         redirectTo="Notifications"
         props={{
           NotificationMessage: error||"Profile has been updated",
           ButtonMessage: error?"Return back": "Go to Home",
-          ButtonRedirect: error? "UpdateProfileBss" : "StationDashboard",
+          ButtonRedirect: error? "EditProfile" : "StationDashboard",
         }}
         onPressFunction={handleSubmit}
       />
 
       <Text style={{color:'red'}}>{error}</Text>
+      <View style={{marginTop:80}}></View>
     </View>
   );
 };

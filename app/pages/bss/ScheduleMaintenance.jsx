@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image, Text, Linking, TouchableOpacity } from "react-native";
 import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
@@ -14,6 +14,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  phoneNumber: {
+  fontSize: 12,
+  fontWeight: "bold",
+  color: "#58AA42", // Blue color for hyperlink
+},  
 });
 
 
@@ -66,16 +71,14 @@ const ScheduleMaintenance = ({ navigation }) => {
     }
   };
 
+  const phoneNumber = process.env.PHONE;
+  const handlePhonePress = () => {
+    const phoneUrl = `tel:${phoneNumber}`;
+    Linking.openURL(phoneUrl);
+  };
+
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../../assets/img/Neubolt.png")}
-        style={{
-          width: 300,
-          height: 80,
-          marginBottom: 20,
-        }}
-      />
       <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
       <TextField label="Name" value={name} onChange={setName} />
       <TextField label="Email Address" value={email} onChange={setEmail}/>
@@ -87,8 +90,8 @@ const ScheduleMaintenance = ({ navigation }) => {
 
       <LargeButton
         textDisplay="Schedule Maintenance"
-        backgroundColor="white"
-        textColor="black"
+        backgroundColor="#58AA42"
+        textColor="white"
         redirectTo="Notifications"
         props={{
           NotificationMessage: error||"Maintenance has been scheduled",
@@ -99,6 +102,11 @@ const ScheduleMaintenance = ({ navigation }) => {
       />
 
       <Text style={{color:'red'}}>{error}</Text>
+
+      <Text style={{color: 'white'}}>Call us on our helpline:</Text>
+      <TouchableOpacity onPress={handlePhonePress}>
+        <Text style={styles.phoneNumber}>{phoneNumber}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, StyleSheet, Text } from "react-native";
-import LargeButton from "../components/LargeButton";
-import TextField from "../components/TextField";
-import Dropdown from "../components/Dropdown";
-import StarRating from "../components/StarRating";
+import LargeButton from "../../components/LargeButton";
+import TextField from "../../components/TextField";
+import DropDown from "../../components/DropDown";
+import StarRating from "../../components/StarRating";
+import LargeTextField from "../../components/LargeTextField";
 
 const styles = StyleSheet.create({
   container: {
@@ -31,20 +32,44 @@ const styles = StyleSheet.create({
   },
 });
 
+
 const FeedbackForm = () => {
+
+  const [station, setStation]=useState('')
+  const [date, setDate]=useState('')
+  const [comments, setComments]=useState('')
+
+  const optionsStations = [
+    { label: 'Station 1', value: 'Station 1' },
+    { label: 'Station 2', value: 'Station 2' },
+    { label: 'Station 3', value: 'Sttaion 3' },
+  ];
+  
+  const optionsDates = [
+    { label: 'Date/Time 1', value: 'Date/Time 1' },
+    { label: 'Date/Time 2', value: 'Date/Time 2' },
+    { label: 'Date/Time 3', value: 'Date/Time 3' },
+  ];
+  const handleOptionChangeStation = (newValue) => {
+    setStation(newValue);
+  };
+
+  const handleOptionChangeDate = (newValue) => {
+    setDate(newValue);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>BSS Feedback Form</Text>
-      <Dropdown
-        label="BSS Station"
-        options={["Station 1", "Station 2", "Station 3"]}
-      />
-      <Dropdown
-        label="Date/Time of visit"
-        options={["Date/Time 1", "Date/Time 2", "Date/Time 3"]}
-      />
+
+      <DropDown label="BSS Station" value={station} onChange={handleOptionChangeStation} options={optionsStations} /> 
+      <DropDown label="Date/Time of Visit" value={date} onChange={handleOptionChangeDate} options={optionsDates} /> 
+
+  
       <StarRating />
-      <TextField label="Comments" />
+
+      <LargeTextField label="Comments " value={comments} onChange={setComments} />
+
       <LargeButton
         textDisplay="Submit Feedback"
         backgroundColor="white"
