@@ -58,7 +58,6 @@ const SignUp = ({ navigation }) => {
       } else if (propData.person=="Rickshaw Driver"){
         let rickshawRecord={
           email: email,
-          rickshawNumber: "",
           package: "",
           photo:"",
           assigned:""
