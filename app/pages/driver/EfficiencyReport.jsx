@@ -6,6 +6,7 @@ import Loading from '../../components/Loading'
 import { where } from "firebase/firestore";
 import { auth } from '../../config/firebase'
 import DividerWithText from '../../components/DividerText'
+import NavigatorBar from "../../components/NavigatorBar";
 
 
 const styles = StyleSheet.create({
@@ -18,13 +19,20 @@ const styles = StyleSheet.create({
 });
 
 const EfficiencyReport = () => {
+  
     const [rickshawPerson, setRickshawPerson] = useState(null);
     const [rickshaw, setRickshaw] = useState(null);
 
     const today = new Date();
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const formattedDate = today.toLocaleDateString('en-US', options);
-
+  
+    const handleBackPress = () => {
+    navigation.goBack();
+  };
+    const handleSettingsPress = () => {
+    navigation.navigate("SettingsDriver");
+  };
     const fetchObtainedState = async () => {
         try {
             const obtainedRickshaw = await getRecord("Rickshaw Driver", [
@@ -48,7 +56,12 @@ const EfficiencyReport = () => {
     return (
         <View style={styles.container}>
             {rickshaw ? (
-                <>
+                <>  
+                    <NavigatorBar
+                      onBackPress={handleBackPress}
+                      onSettingsPress={handleSettingsPress}
+                      showBackButton={true}
+                    />
                     <DividerWithText textDisplay={"Efficiency Report"} style={{ marginBottom: 20 }} />
                     <GreenBorderCase initialWidth={300} initialHeight={320} thickness={7}>
 
@@ -134,7 +147,6 @@ const EfficiencyReport = () => {
 
         </View>
     );
-
-}
+};
 
 export default EfficiencyReport;

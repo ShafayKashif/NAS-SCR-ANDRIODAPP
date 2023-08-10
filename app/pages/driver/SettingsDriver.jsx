@@ -5,7 +5,8 @@ import { View, StyleSheet, Image, Text } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
 import TextField from "../../components/TextField";
-import {auth} from '../../config/firebase';
+import { auth } from "../../config/firebase";
+import NavigatorBar from "../../components/NavigatorBar";
 
 const styles = StyleSheet.create({
   container: {
@@ -28,8 +29,15 @@ const styles = StyleSheet.create({
 });
 
 const SettingsDriver = () => {
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
 
- const handleLogout = async () => {
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsDriver"); // Redirect to driver settings page
+  };
+
+  const handleLogout = async () => {
     try {
       await auth.signOut();
       // The user is now logged out
@@ -39,10 +47,15 @@ const SettingsDriver = () => {
       console.log("Error logging out:", error);
     }
   };
-  
+
   return (
     <View style={styles.container}>
-      <DividerWithText textDisplay={"Settings"} style={{ marginBottom: 20 }} />
+      <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
+      <DividerWithText textDisplay="Settings" style={{ marginBottom: 20 }} />
       <SmallButton
         textDisplay="Edit Profile Information"
         backgroundColor="white"
@@ -53,13 +66,13 @@ const SettingsDriver = () => {
         textDisplay="Change Password"
         backgroundColor="white"
         textColor="black"
-        redirectTo="ChangePassword" //
+        redirectTo="ChangePassword"
       />
       <SmallButton
         textDisplay="Package"
         backgroundColor="white"
         textColor="black"
-        redirectTo="PackagePage" //
+        redirectTo="PackagePage"
       />
       <LargeButton
         textDisplay="Log Out"

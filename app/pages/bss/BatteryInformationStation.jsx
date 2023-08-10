@@ -1,4 +1,3 @@
-// TODO: Complete formatting in center and with 
 import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, ScrollView, Image } from "react-native";
 import DividerWithText from "../../components/DividerText";
@@ -7,6 +6,7 @@ import { auth } from "../../config/firebase";
 import { getRecordById, getRecord } from "../../global/firebaseFunctions";
 import Loading from "../../components/Loading";
 import { where } from "firebase/firestore";
+import NavigatorBar from "../../components/NavigatorBar";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,20 +17,27 @@ const styles = StyleSheet.create({
   },
 });
 
-const BatteryInformationStation = () => {
+const BatteryInformationStation = ({ navigation }) => {
   const [error, setError] = useState("");
   const [info, setInfo] = useState(null);
 
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsBss");
+  };
+
   const fetchObtainedState = async () => {
     try {
-      console.log(auth)
+      console.log(auth);
       const obtained = await getRecord("Bss Officer", [
         where("email", "==", auth.currentUser.email),
       ]);
       const obtainedState = await getRecordById("Station", obtained.station);
       setInfo(obtainedState);
-    } catch (err) {
-    }
+    } catch (err) {}
   };
   
   useEffect(() => {
@@ -41,13 +48,17 @@ const BatteryInformationStation = () => {
     const timeout = setTimeout(() => {
       fetchObtainedState();
     }, 30000); // 5 seconds in milliseconds
-
   });
 
   const dividertext = "Battery Information";
 
   return info ? (
     <View style={styles.container}>
+   <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
          <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
      <ScrollView>
       <View>
@@ -63,10 +74,9 @@ const BatteryInformationStation = () => {
               timeHours={info.batterySlots[slotKey].timeToFullCharge.hours}
               timeMin={info.batterySlots[slotKey].timeToFullCharge.remainingMinutes}
             />
+
           </View>
-        ))}
-      </View>
-      </View>
+        </View>
       </ScrollView>
     </View>
   ) : (
@@ -75,5 +85,3 @@ const BatteryInformationStation = () => {
 };
 
 export default BatteryInformationStation;
-
-

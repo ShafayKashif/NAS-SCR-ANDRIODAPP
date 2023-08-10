@@ -5,6 +5,7 @@ import TextField from "../../components/TextField";
 import DropDown from "../../components/DropDown";
 import StarRating from "../../components/StarRating";
 import LargeTextField from "../../components/LargeTextField";
+import NavigatorBar from "../../components/NavigatorBar";
 import DividerWithText from "../../components/DividerText";
 import {addRecord} from "../../global/firebaseFunctions";
 import {auth} from "../../config/firebase";
@@ -40,8 +41,15 @@ const styles = StyleSheet.create({
   }
 });
 
+const FeedbackForm = ({ navigation }) => {
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
 
-const FeedbackForm = () => {
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsDriver");
+  };
+
 
   const [station, setStation]=useState('')
   const [date, setDate]=useState('')
@@ -55,15 +63,15 @@ const FeedbackForm = () => {
   };
 
   const optionsStations = [
-    { label: 'Station 1', value: 'Station 1' },
-    { label: 'Station 2', value: 'Station 2' },
-    { label: 'Station 3', value: 'Sttaion 3' },
+    { label: "Station 1", value: "Station 1" },
+    { label: "Station 2", value: "Station 2" },
+    { label: "Station 3", value: "Sttaion 3" },
   ];
-  
+
   const optionsDates = [
-    { label: 'Date/Time 1', value: 'Date/Time 1' },
-    { label: 'Date/Time 2', value: 'Date/Time 2' },
-    { label: 'Date/Time 3', value: 'Date/Time 3' },
+    { label: "Date/Time 1", value: "Date/Time 1" },
+    { label: "Date/Time 2", value: "Date/Time 2" },
+    { label: "Date/Time 3", value: "Date/Time 3" },
   ];
   const handleOptionChangeStation = (newValue) => {
     setStation(newValue);
@@ -111,14 +119,35 @@ const FeedbackForm = () => {
 
   return (
     <View style={styles.container}>
+
+      <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
       <DividerWithText textDisplay={"BSS Feedback Form"} style={{ marginBottom: 20 }} />
 
-      <DropDown label="BSS Station" value={station} onChange={handleOptionChangeStation} options={optionsStations} /> 
-      <DropDown label="Date/Time of Visit" value={date} onChange={handleOptionChangeDate} options={optionsDates} /> 
+      <DropDown
+        label="BSS Station"
+        value={station}
+        onChange={handleOptionChangeStation}
+        options={optionsStations}
+      />
+      <DropDown
+        label="Date/Time of Visit"
+        value={date}
+        onChange={handleOptionChangeDate}
+        options={optionsDates}
+      />
+
 
       <StarRating label={"Rate"} onChange={handleRatingChange}/>
-
-      <LargeTextField label="Comments " value={comments} onChange={setComments} />
+        
+      <LargeTextField
+        label="Comments "
+        value={comments}
+        onChange={setComments}
+      />
 
       <LargeButton
         textDisplay="Submit Feedback"

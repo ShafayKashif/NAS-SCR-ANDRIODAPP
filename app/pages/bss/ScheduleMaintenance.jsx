@@ -1,4 +1,11 @@
-import { View, StyleSheet, Image, Text, Linking, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Image,
+  Text,
+  Linking,
+  TouchableOpacity,
+} from "react-native";
 import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
@@ -9,6 +16,8 @@ import {auth} from '../../config/firebase';
 import {getRecord} from '../../global/firebaseFunctions';
 import DisabledTextField from "../../components/DisabledTextField";
 import {where} from 'firebase/firestore';
+import NavigatorBar from "../../components/NavigatorBar";
+
 
 const styles = StyleSheet.create({
   container: {
@@ -18,23 +27,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   phoneNumber: {
-  fontSize: 12,
-  fontWeight: "bold",
-  color: "#58AA42", // Blue color for hyperlink
-},  
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "#58AA42", // Blue color for hyperlink
+  },
 });
 
-
 const ScheduleMaintenance = ({ navigation }) => {
-  const [email, setEmail] = useState('');
-  const [name, setName]=useState('');
-  const [phone, setPhone]=useState('');
-  const [cnic, setCnic]=useState('');
-  const [date, setDate]=useState('');
-  const [time, setTime]=useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [cnic, setCnic] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
 
-
-  const [error,setError] = useState('');
+  const [error, setError] = useState("");
 
   const route = useRoute();
   const propData = route.params;
@@ -59,7 +66,6 @@ const ScheduleMaintenance = ({ navigation }) => {
   },[]);
 
   const handleSubmit = async (event) => {
-
     try {
       // Create a new user with email and password using Firebase      
       let newRecordData={
@@ -78,20 +84,28 @@ const ScheduleMaintenance = ({ navigation }) => {
       // User registration successful
       console.log('Maintenance has been scheduled!');
 
-      // Reset the form inputs
-      setEmail('');
-      setName('');
-      setPhone('');
-      setCnic('');
-      setDate('');
-      setTime('');
-      setError('');
 
+      // Reset the form inputs
+      setEmail("");
+      setName("");
+      setPhone("");
+      setCnic("");
+      setDate("");
+      setTime("");
+      setError("");
     } catch (err) {
       // Error occurred during user registration
       console.error('Error submitting maintenance:', err.message);
       setError('Error '+ err.message);
     }
+  };
+
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsBss");
   };
 
   const phoneNumber = process.env.PHONE;
@@ -102,6 +116,11 @@ const ScheduleMaintenance = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
       <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
       <TextField label="Name" value={name} onChange={setName} />
       <DisabledTextField label="Email Address" value={auth.currentUser.email} onChange={setEmail}/>
@@ -117,16 +136,16 @@ const ScheduleMaintenance = ({ navigation }) => {
         textColor="white"
         redirectTo="Notifications"
         props={{
-          NotificationMessage: error||"Maintenance has been scheduled",
-          ButtonMessage: error?"Return back": "Go to Home",
-          ButtonRedirect: error? "ScheduleMaintenance" : "StationDashboard",
+          NotificationMessage: error || "Maintenance has been scheduled",
+          ButtonMessage: error ? "Return back" : "Go to Home",
+          ButtonRedirect: error ? "ScheduleMaintenance" : "StationDashboard",
         }}
         onPressFunction={handleSubmit}
       />
 
-      <Text style={{color:'red'}}>{error}</Text>
+      <Text style={{ color: "red" }}>{error}</Text>
 
-      <Text style={{color: 'white'}}>Call us on our helpline:</Text>
+      <Text style={{ color: "white" }}>Call us on our helpline:</Text>
       <TouchableOpacity onPress={handlePhonePress}>
         <Text style={styles.phoneNumber}>{phoneNumber}</Text>
       </TouchableOpacity>

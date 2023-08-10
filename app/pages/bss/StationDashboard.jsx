@@ -14,8 +14,8 @@ import { Link } from "@react-navigation/native";
 import { FontAwesome } from "@expo/vector-icons"; // Assuming you have FontAwesome or a similar icon library
 import GreenBorderCase from "../../components/GreenBorderCase";
 import BatteryComponent from "../../components/BatteryComponent";
-
-import NavBss from '../temporary/NavBss';
+import NavigatorBar from "../../components/NavigatorBar";
+import NavBss from "../temporary/NavBss";
 
 const styles = StyleSheet.create({
   container: {
@@ -100,18 +100,29 @@ const StationDashboard = ({ navigation }) => {
     }, 5000); // 5 seconds in milliseconds
   });
 
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsBss"); //
+  };
+
   return (
     <View style={styles.container}>
-
+      <NavigatorBar
+        onSettingsPress={handleSettingsPress}
+        showBackButton={false}
+      />
       {stationInfo ? (
         <ScrollView>
-        
-          <View style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
+          <View
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             {/* Temporary */}
             <NavBss />
-           
 
-            <Text style={{color: 'white'}}>Day Fare: {rate} PKR</Text>
+            <Text style={{ color: "white" }}>Day Fare: {rate} PKR</Text>
             <View style={stylecontainer.container}>
               <View style={stylecontainer.carouselContainer}>
                 <TouchableOpacity

@@ -7,8 +7,7 @@ import Loading from "../../components/Loading";
 import { Link } from "@react-navigation/native";
 import BatteryComponent from "../../components/BatteryComponent";
 import GreenBorderCase from "../../components/GreenBorderCase";
-
-import NavDriver from "../temporary/NavDriver";
+import NavigatorBar from "../../components/NavigatorBar";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,17 +22,19 @@ const DriverDashboard = ({ navigation }) => {
   const [driverInfo, setDriverInfo] = useState(null);
   const [rate, setRate] = useState("");
 
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsDriver");
+  };
+
   const fetchObtainedState = async () => {
     try {
       const obtainedRickshaw = await getRecord("Rickshaw Driver", [
         where("email", "==", auth.currentUser.email),
       ]);
-      // console.log(obtainedRickshaw.assigned)
       const obtainedState = await getRecordById(
         "Rickshaw",
         obtainedRickshaw.assigned
       );
-      // console.log(obtainedState)
       setDriverInfo(obtainedState);
     } catch (err) {
       console.log(err);
@@ -52,15 +53,16 @@ const DriverDashboard = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <NavigatorBar
+        onSettingsPress={handleSettingsPress}
+        showBackButton={false}
+      />
       {driverInfo ? (
         <View>
-          <NavDriver/>
-          
           <Text style={{ color: "#FFFFFF" }}>Rickshaw Driver Dashboard</Text>
           <Text>Rickshaw Plate: {driverInfo.RickshawPlate}</Text>
           <Text>Distance Travelled: {driverInfo.distanceTravelled}</Text>
           <Text>Trees Saved: {driverInfo.treesSaved}</Text>
-
           <GreenBorderCase
                     initialWidth={270}
                     initialHeight={270}
@@ -93,8 +95,8 @@ const DriverDashboard = ({ navigation }) => {
         >
           View Details
         </Link>
+
           </GreenBorderCase>
-         
         </View>
       ) : (
         <Loading />

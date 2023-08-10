@@ -30,7 +30,13 @@ const styles = StyleSheet.create({
 
 const PackagePage = () => {
   const [myPackage, setMyPackage] = useState("");
+    const handleBackPress = () => {
+    navigation.goBack();
+  };
 
+  const handleSettingsPress = () => {
+    navigation.navigate("SettingsDriver"); //
+  };
   const fetchObtainedState = async () => {
     try {
       const obtainedRickshaw = await getRecord("Rickshaw Driver", [
@@ -49,6 +55,11 @@ const PackagePage = () => {
 
   return (
     <View style={styles.container}>
+       <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
       <DividerWithText textDisplay={"Package"} style={{ marginBottom: 40 }} />
       <View style={{marginBottom:20}}/>
       {myPackage ? (
