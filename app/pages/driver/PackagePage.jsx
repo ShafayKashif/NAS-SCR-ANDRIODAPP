@@ -13,6 +13,12 @@ import {
   MonthlyPackageImages,
 } from "../../utils/obtainPackages";
 
+const mergedImages = {
+  ...DailyPackageImages,
+  ...WeeklyPackageImages,
+  ...MonthlyPackageImages,
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -57,7 +63,7 @@ const PackagePage = () => {
                 paddingVertical: 10,
               }}
             >
-              <Image source={MonthlyPackageImages[myPackage]}  style={{ width: 280, height: 260 }}/>
+              <Image source={mergedImages[myPackage]}  style={{ width: 280, height: 300 }}/>
             </View>
           </GreenBorderCase>
         </>
