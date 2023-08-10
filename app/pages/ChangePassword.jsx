@@ -5,9 +5,15 @@ import LargeButton from "../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../components/DividerText";
 import TextField from "../components/TextField";
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import { auth } from "../config/firebase";
-import { reauthenticateWithCredential, EmailAuthProvider, updatePassword } from "firebase/auth";
+import { updatePassword } from "firebase/auth";
+import { where } from "firebase/firestore";
+
+import { EmailAuthProvider } from "firebase/auth";
+import { reauthenticateWithCredential } from "firebase/auth";
+import {getRecord} from '../global/firebaseFunctions';
+import StationDashboard from "./bss/StationDashboard";
 
 const styles = StyleSheet.create({
   container: {
@@ -25,43 +31,56 @@ const ChangePassword = ({ navigation }) => {
   const [previousPassword, setPreviousPassword] = useState('');
   const [newPassword, setNewPassword]=useState('');
   const [confirmNewPassword, setConfirmPassword]=useState('');
+  const [designation, setDesignation]=useState('')
 
   const route = useRoute();
   const dividertext = "Change Password"
 
+  const obtainUser =async ()=>{
+    const obtainedPerson = await getRecord("Details User", [
+      where("email", "==", auth.currentUser.email),
+    ]);
+
+    setDesignation(obtainedPerson.designation)
+  }
+
+  useEffect(()=>{
+    obtainUser();
+  },[])
+
+
 
   const handleSubmit = async () => {
     try {
-      // Check if the user is currently signed in
       const user = auth.currentUser;
-      console.log(user)
-      if (!user) {
-        setError('User not logged in.');
-        return;
+      const passwordEnteredByUser = previousPassword; //get password from user using a form
+      const credential = EmailAuthProvider.credential(user.email, passwordEnteredByUser);
+  
+      try {
+        await reauthenticateWithCredential(user, credential);
+        console.log('Reauthentication successful.');
+  
+        // Check if the new password and confirm new password match
+        if (newPassword !== confirmNewPassword) {
+          setError('New password and confirm new password do not match.');
+          throw new Error('New password and confirm new password do not match.');
+        }
+  
+        // Update the password in Firebase
+        await updatePassword(auth.currentUser, newPassword);
+  
+        setError(''); // Clear any previous error message
+        console.log('Password updated successfully!');
+      } catch (reauthError) {
+        console.log('Error reauthenticating:', reauthError.message);
+        setError(reauthError.message);
       }
-  
-      // Create the credential object
-      const credential = EmailAuthProvider.credential(user.email, previousPassword);
-  
-      // Reauthenticate the user
-      await reauthenticateWithCredential(credential);
-  
-      // Check if the new password and confirm new password match
-      if (newPassword !== confirmNewPassword) {
-        setError('New password and confirm new password do not match.');
-        return;
-      }
-  
-      // Update the password in Firebase
-      await updatePassword(auth.currentUser, newPassword);
-  
-      setError(''); // Clear any previous error message
-      console.log('Password updated successfully!');
     } catch (error) {
       console.log('Error updating password:', error.message);
       setError(error.message);
     }
   };
+  
 
   return (
     <View style={styles.container}>
@@ -73,15 +92,14 @@ const ChangePassword = ({ navigation }) => {
 
 
       <LargeButton
-        textDisplay="Report a Problem"
-        backgroundColor="green"
+        textDisplay="Change Password"
+        backgroundColor="#58AA42"
         textColor="white"
         redirectTo="Notifications"
         props={{
-          NotificationMessage: error||"Password has been updated",
+          NotificationMessage: error?error:"Password has been updated",
           ButtonMessage: error?"Return back": "Go to Home",
-        //   TODO: FIX THIS
-          ButtonRedirect: error? "ChangePassword" : "StationDashboard",
+          ButtonRedirect: error? "ChangePassword" : (designation==="Rickshaw Driver"?"DriverDashboard": "StationDashboard")
         }}
         onPressFunction={handleSubmit}
       />

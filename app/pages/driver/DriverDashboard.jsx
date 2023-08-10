@@ -31,7 +31,6 @@ const DriverDashboard = ({ navigation }) => {
       const obtainedRickshaw = await getRecord("Rickshaw Driver", [
         where("email", "==", auth.currentUser.email),
       ]);
-      console.log(obtainedRickshaw);
       const obtainedState = await getRecordById(
         "Rickshaw",
         obtainedRickshaw.assigned
@@ -43,9 +42,13 @@ const DriverDashboard = ({ navigation }) => {
   };
 
   useEffect(() => {
+      fetchObtainedState();
+  },[]);
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       fetchObtainedState();
-    }, 5000); // 5 seconds in milliseconds
+    }, 30000); // 5 seconds in milliseconds
   });
 
   return (
@@ -60,34 +63,39 @@ const DriverDashboard = ({ navigation }) => {
           <Text>Rickshaw Plate: {driverInfo.RickshawPlate}</Text>
           <Text>Distance Travelled: {driverInfo.distanceTravelled}</Text>
           <Text>Trees Saved: {driverInfo.treesSaved}</Text>
+          <GreenBorderCase
+                    initialWidth={270}
+                    initialHeight={270}
+                    thickness={7}
+                  >
+          <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+            {Object.keys(driverInfo.batterySlots).map((slotKey, index) => {
+              return (
+            
+                <View style={{ width: "50%", padding: 10 }} key={slotKey}>
 
-          <GreenBorderCase initialWidth={270} initialHeight={270} thickness={7}>
-            <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-              {Object.keys(driverInfo.batterySlots).map((slotKey, index) => {
-                return (
-                  <View style={{ width: "50%", padding: 10 }} key={slotKey}>
-                    <BatteryComponent
-                      charge={driverInfo.batterySlots[slotKey].charge}
-                      batteryNumber={slotKey}
-                      timeHoursLeft={
-                        driverInfo.batterySlots[slotKey].Time_Left ?? 0
-                      }
-                    />
-                  </View>
-                );
-              })}
-            </View>
-            <Link
-              to="/BatteryInformationDriver"
-              style={{
-                color: "#58AA42",
-                fontWeight: "bold",
-                fontSize: 16,
-                textDecorationLine: "underline",
-              }}
-            >
-              View Details
-            </Link>
+                  <BatteryComponent
+                    charge={driverInfo.batterySlots[slotKey].charge}
+                    batteryNumber={slotKey}
+                    timeHoursLeft={
+                      driverInfo.batterySlots[slotKey].Time_Left.hours??0
+                    }
+                    timeMinutesLeft={
+                      driverInfo.batterySlots[slotKey].Time_Left.remainingMinutes??0
+                    }
+                  />
+                </View>
+               
+              );
+            })}
+          </View>
+          <Link
+          to="/BatteryInformationDriver"
+          style={{ color: "#58AA42", fontWeight: "bold", fontSize:16, textDecorationLine:'underline' }}
+        >
+          View Details
+        </Link>
+
           </GreenBorderCase>
         </View>
       ) : (

@@ -88,6 +88,11 @@ const StationDashboard = ({ navigation }) => {
   };
 
   useEffect(() => {
+    fetchObtainedState();
+    fetchObtainedRate();
+  },[]);
+
+  useEffect(() => {
     const timeout = setTimeout(() => {
       // Use an IIFE to make the useEffect function asynchronous
       fetchObtainedState();
@@ -151,7 +156,11 @@ const StationDashboard = ({ navigation }) => {
                                     batteryNumber={slotKey}
                                     timeHoursLeft={
                                       stationInfo.batterySlots[slotKey]
-                                        .TimeToFullCharge
+                                        .TimeToFullCharge.hours
+                                    }
+                                    timeMinutesLeft={
+                                      stationInfo.batterySlots[slotKey]
+                                        .TimeToFullCharge.remainingMinutes
                                     }
                                   />
                                 </View>

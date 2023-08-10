@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import { View, StyleSheet, Image } from "react-native";
 import { Text } from "react-native-paper";
 import LargeButton from "../components/LargeButton";
@@ -32,9 +32,9 @@ const SignIn = ({ navigation }) => {
   const handleSubmit = async () => {
     try {
       // Create a new user with email and password using Firebase
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email.toLowerCase(), password);
   
-      const querypassed = [where("email", "==", email)];
+      const querypassed = [where("email", "==", email.toLowerCase())];
 
       // Use await here to get the result from the getRecord function
       const result = await getRecord("Details User", querypassed);

@@ -39,7 +39,7 @@ const SignUp = ({ navigation }) => {
       await createUserWithEmailAndPassword(auth, email, password);
 
       let newRecordData={
-        email:email,
+        email:email.toLowerCase(),
         name: name,
         phone: phone,
         cnic: cnic,
@@ -50,15 +50,14 @@ const SignUp = ({ navigation }) => {
 
       if (propData.person=="BSS Officer"){
         let officerRecord={
-          email: email,
+          email: email.toLowerCase(),
           station: "",
           photo:""
         }
         addRecord('Bss Officer', officerRecord)
       } else if (propData.person=="Rickshaw Driver"){
         let rickshawRecord={
-          email: email,
-          rickshawNumber: "",
+          email: email.toLowerCase(),
           package: "",
           photo:"",
           assigned:""

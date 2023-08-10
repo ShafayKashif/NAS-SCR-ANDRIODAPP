@@ -29,6 +29,7 @@ const EditProfile = ({ navigation }) => {
   const [name, setName] = useState('');
   const [phone, setPhone]=useState('');
   const [cnic, setCnic]=useState('');
+  const [designation, setDesignation]=useState('')
 
   const route = useRoute();
   const dividertext = "Update Profile"
@@ -38,7 +39,7 @@ const EditProfile = ({ navigation }) => {
 
             try{
               const obtainedUser = await getRecord('Details User', [where("email", "==", auth.currentUser.email)]);
-              
+              setDesignation(obtainedUser.designation)
               setName(obtainedUser.name);
               setPhone(obtainedUser.phone);
               setCnic(obtainedUser.cnic);
@@ -97,7 +98,7 @@ const EditProfile = ({ navigation }) => {
         props={{
           NotificationMessage: error||"Profile has been updated",
           ButtonMessage: error?"Return back": "Go to Home",
-          ButtonRedirect: error? "EditProfile" : "StationDashboard",
+          ButtonRedirect: error? "EditProfile" : (designation==="Rickshaw Driver"?"DriverDashboard": "StationDashboard")
         }}
         onPressFunction={handleSubmit}
       />

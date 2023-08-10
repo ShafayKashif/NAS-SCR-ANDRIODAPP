@@ -10,11 +10,15 @@ import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
 import TextField from "../../components/TextField";
-import React, { useState } from "react";
-import { addRecord } from "../../global/firebaseFunctions";
+import React, { useState, useEffect } from "react";
+import {addRecord} from '../../global/firebaseFunctions';
 import DropDown from "../../components/DropDown";
 import LargeTextField from "../../components/LargeTextField";
+import {auth} from '../../config/firebase';
+import {getRecord} from '../../global/firebaseFunctions';
+import {where} from 'firebase/firestore';
 import NavigatorBar from "../../components/NavigatorBar";
+
 
 const styles = StyleSheet.create({
   container: {
@@ -46,13 +50,37 @@ const TechnicalSupportDriver = ({ navigation }) => {
   const route = useRoute();
   const dividertext = "Report a Problem";
 
+  const [driverInfo, setDriverInfo] = useState(null);
+
+  const fetchObtainedState = async () => {
+    try {
+      const obtainedRickshaw = await getRecord("Rickshaw Driver", [
+        where("email", "==", auth.currentUser.email),
+      ]);
+    
+      // console.log(obtainedState)
+      setDriverInfo(obtainedRickshaw);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+      fetchObtainedState();
+  },[]);
+
+
   const handleSubmit = async (event) => {
     try {
-      // Create a new user with email and password using Firebase
-      let newRecordData = {
-        "Problem Type": selectedProblem,
-        "Problem Detail": problemDetail,
-      };
+      // Create a new user with email and password using Firebase      
+      let newRecordData={
+        "Problem Type":selectedProblem,
+        "Problem Detail":problemDetail,
+        "Resolved": false,
+        "assigned": driverInfo?driverInfo.assigned:'',
+        "email": auth.currentUser.email,
+      }
+    
 
       addRecord("Technical Support Driver", newRecordData);
 
@@ -111,10 +139,9 @@ const TechnicalSupportDriver = ({ navigation }) => {
         textColor="white"
         redirectTo="Notifications"
         props={{
-          NotificationMessage:
-            error || "Technical Support Report has been submitted",
-          ButtonMessage: error ? "Return back" : "Go to Home",
-          ButtonRedirect: error ? "TechnicalSupportDriver" : "StationDashboard",
+          NotificationMessage: error||"Technical Support Report has been submitted",
+          ButtonMessage: error?"Return back": "Go to Home",
+          ButtonRedirect: error? "TechnicalSupportDriver" : "DriverDashboard",
         }}
         onPressFunction={handleSubmit}
       />

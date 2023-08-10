@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React, {useState} from "react";
+import { View, StyleSheet, Text, TouchableOpacity, Linking } from "react-native";
 import LargeButton from "../../components/LargeButton";
 import TextField from "../../components/TextField";
 import DropDown from "../../components/DropDown";
 import StarRating from "../../components/StarRating";
 import LargeTextField from "../../components/LargeTextField";
 import NavigatorBar from "../../components/NavigatorBar";
+import DividerWithText from "../../components/DividerText";
+import {addRecord} from "../../global/firebaseFunctions";
+import {auth} from "../../config/firebase";
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +34,11 @@ const styles = StyleSheet.create({
     color: "white",
     margin: 20,
   },
+  phoneNumber: {
+    fontSize: 12,
+    fontWeight: "bold",
+    color: "#58AA42", // Green color for hyperlink
+  }
 });
 
 const FeedbackForm = ({ navigation }) => {
@@ -42,9 +50,17 @@ const FeedbackForm = ({ navigation }) => {
     navigation.navigate("SettingsDriver");
   };
 
-  const [station, setStation] = useState("");
-  const [date, setDate] = useState("");
-  const [comments, setComments] = useState("");
+
+  const [station, setStation]=useState('')
+  const [date, setDate]=useState('')
+  const [comments, setComments]=useState('')
+  const [selectedRating, setSelectedRating] = useState(0);
+  const [error,setError] = useState('');
+
+  const handleRatingChange = (rating) => {
+    setSelectedRating(rating);
+    
+  };
 
   const optionsStations = [
     { label: "Station 1", value: "Station 1" },
@@ -65,14 +81,51 @@ const FeedbackForm = ({ navigation }) => {
     setDate(newValue);
   };
 
+  const phoneNumber = process.env.PHONE;
+  const handlePhonePress = () => {
+    const phoneUrl = `tel:${phoneNumber}`;
+    Linking.openURL(phoneUrl);
+  };
+
+  const handleSubmit = async (event) => {
+
+    try {
+      // Create a new user with email and password using Firebase      
+      let newRecordData={
+        "email":auth.currentUser.email,
+        "Date": date,
+        "comments":comments,
+        "rating": selectedRating,
+        "station": station,
+      }
+    
+      addRecord('Feedback Report', newRecordData);
+     
+
+      console.log('Submitted document!');
+
+      // Reset the form inputs
+      setDate('');
+      setSelectedRating('');
+      setComments('')
+      setError('');
+      setStation('');
+      
+
+    } catch (err) {
+      setError('Error '+ err.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
+
       <NavigatorBar
         onBackPress={handleBackPress}
         onSettingsPress={handleSettingsPress}
         showBackButton={true}
       />
-      <Text style={styles.title}>BSS Feedback Form</Text>
+      <DividerWithText textDisplay={"BSS Feedback Form"} style={{ marginBottom: 20 }} />
 
       <DropDown
         label="BSS Station"
@@ -87,8 +140,9 @@ const FeedbackForm = ({ navigation }) => {
         options={optionsDates}
       />
 
-      <StarRating />
 
+      <StarRating label={"Rate"} onChange={handleRatingChange}/>
+        
       <LargeTextField
         label="Comments "
         value={comments}
@@ -97,16 +151,22 @@ const FeedbackForm = ({ navigation }) => {
 
       <LargeButton
         textDisplay="Submit Feedback"
-        backgroundColor="white"
-        textColor="black"
+        backgroundColor="#58AA42"
+        textColor="white"
         redirectTo="Notifications"
-        navigationParams={{
-          NotificationMessage: "Your feedback has been submitted",
-          ButtonMessage: "Go to HomePage",
-          ButtonRedirect: "Homepage",
+        props={{
+          NotificationMessage: error||"Your feedback has been Submitted",
+          ButtonMessage: error?"Return back": "Go to Home",
+          ButtonRedirect: error? "FeedbackForm" : "DriverDashboard",
         }}
+        onPressFunction={handleSubmit}
       />
-      <Text style={styles.footer}>Call our helpline:</Text>
+
+      <View style={{marginBottom:20}}/>
+       <Text style={{color: 'white'}}>Call us on our helpline:</Text>
+      <TouchableOpacity onPress={handlePhonePress}>
+        <Text style={styles.phoneNumber}>{phoneNumber}</Text>
+      </TouchableOpacity>
     </View>
   );
 };

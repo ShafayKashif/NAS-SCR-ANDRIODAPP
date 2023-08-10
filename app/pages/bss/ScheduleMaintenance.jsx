@@ -10,9 +10,14 @@ import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
 import TextField from "../../components/TextField";
-import React, { useState } from "react";
-import { addRecord } from "../../global/firebaseFunctions";
+import React, { useState, useEffect } from "react";
+import {addRecord} from '../../global/firebaseFunctions';
+import {auth} from '../../config/firebase';
+import {getRecord} from '../../global/firebaseFunctions';
+import DisabledTextField from "../../components/DisabledTextField";
+import {where} from 'firebase/firestore';
 import NavigatorBar from "../../components/NavigatorBar";
+
 
 const styles = StyleSheet.create({
   container: {
@@ -42,22 +47,43 @@ const ScheduleMaintenance = ({ navigation }) => {
   const propData = route.params;
   const dividertext = "Schedule Maintenance";
 
+  const [stationInfo, setStationInfo] = useState(null);
+
+  const fetchObtainedState = async () => {
+    try {
+      const obtainedOfficer = await getRecord("Bss Officer", [
+        where("email", "==", auth.currentUser.email),
+      ]);
+      console.log(obtainedOfficer)
+      setStationInfo(obtainedOfficer);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchObtainedState();
+  },[]);
+
   const handleSubmit = async (event) => {
     try {
-      // Create a new user with email and password using Firebase
-      let newRecordData = {
-        email: email,
+      // Create a new user with email and password using Firebase      
+      let newRecordData={
+        email:auth.currentUser.email,
         name: name,
         phone: phone,
         cnic: cnic,
         date: date,
         time: time,
-      };
-
-      addRecord("Schedule Maintenance", newRecordData);
-
+        resolved: false,
+        station: stationInfo?stationInfo.station:'',
+      }
+    
+      addRecord('Schedule Maintenance', newRecordData);
+     
       // User registration successful
-      console.log("User registered successfully!");
+      console.log('Maintenance has been scheduled!');
+
 
       // Reset the form inputs
       setEmail("");
@@ -69,8 +95,8 @@ const ScheduleMaintenance = ({ navigation }) => {
       setError("");
     } catch (err) {
       // Error occurred during user registration
-      console.error("Error registering user:", err.message);
-      setError("Error " + err.message);
+      console.error('Error submitting maintenance:', err.message);
+      setError('Error '+ err.message);
     }
   };
 
@@ -97,11 +123,12 @@ const ScheduleMaintenance = ({ navigation }) => {
       />
       <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
       <TextField label="Name" value={name} onChange={setName} />
-      <TextField label="Email Address" value={email} onChange={setEmail} />
-      <TextField label="Phone Number" value={phone} onChange={setPhone} />
-      <TextField label="CNIC" value={cnic} onChange={setCnic} />
-      <TextField label="Date" value={date} onChange={setDate} />
-      <TextField label="Time" value={time} onChange={setTime} />
+      <DisabledTextField label="Email Address" value={auth.currentUser.email} onChange={setEmail}/>
+      <TextField label="Phone Number" value={phone} onChange={setPhone}/>
+      <TextField label="CNIC" value={cnic} onChange={setCnic}/>
+      <TextField label="Date" value={date} onChange={setDate}/>
+      <TextField label="Time" value={time} onChange={setTime}/>
+
 
       <LargeButton
         textDisplay="Schedule Maintenance"
