@@ -87,7 +87,8 @@ const FeedbackForm = () => {
         "email":auth.currentUser.email,
         "Date": date,
         "comments":comments,
-        "rating": selectedRating
+        "rating": selectedRating,
+        "station": station,
       }
     
       addRecord('Feedback Report', newRecordData);
@@ -100,6 +101,7 @@ const FeedbackForm = () => {
       setSelectedRating('');
       setComments('')
       setError('');
+      setStation('');
       
 
     } catch (err) {
@@ -126,7 +128,7 @@ const FeedbackForm = () => {
         props={{
           NotificationMessage: error||"Your feedback has been Submitted",
           ButtonMessage: error?"Return back": "Go to Home",
-          ButtonRedirect: error? "FeedbackForm" : "StationDashboard",
+          ButtonRedirect: error? "FeedbackForm" : "DriverDashboard",
         }}
         onPressFunction={handleSubmit}
       />

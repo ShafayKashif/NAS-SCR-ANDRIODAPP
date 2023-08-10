@@ -99,7 +99,7 @@ const ChangePassword = ({ navigation }) => {
         props={{
           NotificationMessage: error?error:"Password has been updated",
           ButtonMessage: error?"Return back": "Go to Home",
-          ButtonRedirect: error? "ChangePassword" : (designation==="Rickshaw Driver"?"RickshawDashboard": "StationDashboard")
+          ButtonRedirect: error? "ChangePassword" : (designation==="Rickshaw Driver"?"DriverDashboard": "StationDashboard")
         }}
         onPressFunction={handleSubmit}
       />

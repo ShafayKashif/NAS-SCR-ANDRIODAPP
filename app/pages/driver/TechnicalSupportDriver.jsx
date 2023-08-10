@@ -117,7 +117,7 @@ const handlePhonePress = () => {
         props={{
           NotificationMessage: error||"Technical Support Report has been submitted",
           ButtonMessage: error?"Return back": "Go to Home",
-          ButtonRedirect: error? "TechnicalSupportDriver" : "StationDashboard",
+          ButtonRedirect: error? "TechnicalSupportDriver" : "DriverDashboard",
         }}
         onPressFunction={handleSubmit}
       />
