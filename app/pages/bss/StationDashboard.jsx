@@ -208,7 +208,11 @@ const StationDashboard = ({ navigation }) => {
                                     batteryNumber={slotKey}
                                     timeHoursLeft={
                                       stationInfo.batterySlots[slotKey]
-                                        .TimeToFullCharge
+                                        .TimeToFullCharge.hours
+                                    }
+                                    timeMinutesLeft={
+                                      stationInfo.batterySlots[slotKey]
+                                        .TimeToFullCharge.remainingMinutes
                                     }
                                   />
                                 </View>

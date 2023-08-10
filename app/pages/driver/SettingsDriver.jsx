@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const SettingsDriver = () => {
+const SettingsDriver = ({navigation}) => {
   const handleBackPress = () => {
     navigation.goBack();
   };

@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PackagePage = () => {
+const PackagePage = ({navigation}) => {
   const [myPackage, setMyPackage] = useState("");
     const handleBackPress = () => {
     navigation.goBack();

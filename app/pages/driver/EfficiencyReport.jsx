@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const EfficiencyReport = () => {
+const EfficiencyReport = ({navigation}) => {
   
     const [rickshawPerson, setRickshawPerson] = useState(null);
     const [rickshaw, setRickshaw] = useState(null);

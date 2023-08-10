@@ -37,12 +37,12 @@ const BatteryInformationStation = ({ navigation }) => {
       ]);
       const obtainedState = await getRecordById("Station", obtained.station);
       setInfo(obtainedState);
-    } catch (err) {}
+    } catch (err) { }
   };
-  
+
   useEffect(() => {
     fetchObtainedState();
-  },[]);
+  }, []);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -54,34 +54,43 @@ const BatteryInformationStation = ({ navigation }) => {
 
   return info ? (
     <View style={styles.container}>
-   <NavigatorBar
+      <NavigatorBar
         onBackPress={handleBackPress}
         onSettingsPress={handleSettingsPress}
         showBackButton={true}
       />
-         <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
-     <ScrollView>
-      <View>
-      <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-        {Object.keys(info.batterySlots).map((slotKey, index) => (
-          <View style={{ marginTop: 20, marginLeft: 20, display: 'flex', justifyContent:'center', alignItems:'center' }} key={slotKey}>
-            <BatteryInformationCard
-              id={info.batterySlots[slotKey].batteryID}
-              charge={info.batterySlots[slotKey].charge}
-              health={info.batterySlots[slotKey].stateOfHealth} 
-              temperature={info.batterySlots[slotKey].temperature}
-              lastLabel={"Time till complete charged"}
-              timeHours={info.batterySlots[slotKey].timeToFullCharge.hours}
-              timeMin={info.batterySlots[slotKey].timeToFullCharge.remainingMinutes}
-            />
-
-          </View>
+      <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
+      <ScrollView>
+        <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+          {Object.keys(info.batterySlots).map((slotKey, index) => (
+            <View
+              style={{
+                marginTop: 20,
+                marginLeft: 20,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+              key={slotKey}
+            >
+              <BatteryInformationCard
+                id={info.batterySlots[slotKey].batteryID}
+                charge={info.batterySlots[slotKey].charge}
+                health={info.batterySlots[slotKey].stateOfHealth}
+                temperature={info.batterySlots[slotKey].temperature}
+                lastLabel={"Time till complete charged"}
+                timeHours={0}
+                timeMin={0}
+              />
+            </View>
+          ))}
         </View>
       </ScrollView>
     </View>
   ) : (
     <Loading />
   );
+  
 };
 
 export default BatteryInformationStation;
