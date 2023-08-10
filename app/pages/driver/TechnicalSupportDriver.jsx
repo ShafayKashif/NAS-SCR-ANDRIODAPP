@@ -3,10 +3,13 @@ import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
 import TextField from "../../components/TextField";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {addRecord} from '../../global/firebaseFunctions';
 import DropDown from "../../components/DropDown";
 import LargeTextField from "../../components/LargeTextField";
+import {auth} from '../../config/firebase';
+import {getRecord} from '../../global/firebaseFunctions';
+import {where} from 'firebase/firestore';
 
 
 const styles = StyleSheet.create({
@@ -32,6 +35,26 @@ const TechnicalSupportDriver = ({ navigation }) => {
   const route = useRoute();
   const dividertext = "Report a Problem"
 
+  const [driverInfo, setDriverInfo] = useState(null);
+
+  const fetchObtainedState = async () => {
+    try {
+      const obtainedRickshaw = await getRecord("Rickshaw Driver", [
+        where("email", "==", auth.currentUser.email),
+      ]);
+    
+      // console.log(obtainedState)
+      setDriverInfo(obtainedRickshaw);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+      fetchObtainedState();
+  },[]);
+
+
   const handleSubmit = async (event) => {
 
     try {
@@ -39,6 +62,9 @@ const TechnicalSupportDriver = ({ navigation }) => {
       let newRecordData={
         "Problem Type":selectedProblem,
         "Problem Detail":problemDetail,
+        "Resolved": false,
+        "assigned": driverInfo?driverInfo.assigned:'',
+        "email": auth.currentUser.email,
       }
     
       addRecord('Technical Support Driver', newRecordData);

@@ -3,10 +3,13 @@ import LargeButton from "../../components/LargeButton";
 import { useRoute } from "@react-navigation/native";
 import DividerWithText from "../../components/DividerText";
 import TextField from "../../components/TextField";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {addRecord} from '../../global/firebaseFunctions';
 import DropDown from "../../components/DropDown";
 import LargeTextField from "../../components/LargeTextField";
+import {auth} from '../../config/firebase';
+import {getRecord} from '../../global/firebaseFunctions';
+import {where} from 'firebase/firestore';
 
 
 const styles = StyleSheet.create({
@@ -37,6 +40,25 @@ const TechnicalSupportBss = ({ navigation }) => {
     Linking.openURL(phoneUrl);
   };
 
+  const [stationInfo, setStationInfo] = useState(null);
+
+  const fetchObtainedState = async () => {
+    try {
+      const obtainedOfficer = await getRecord("Bss Officer", [
+        where("email", "==", auth.currentUser.email),
+      ]);
+   
+      setStationInfo(obtainedOfficer);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchObtainedState();
+  },[]);
+
+
   const handleSubmit = async (event) => {
 
     try {
@@ -44,6 +66,9 @@ const TechnicalSupportBss = ({ navigation }) => {
       let newRecordData={
         "Problem Type":selectedProblem,
         "Problem Detail":problemDetail,
+        "Resolved": false,
+        "station": stationInfo?stationInfo.station:'',
+        "email": auth.currentUser.email,
       }
     
       addRecord('Technical Support BSS', newRecordData);
