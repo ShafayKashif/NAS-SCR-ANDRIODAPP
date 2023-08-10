@@ -76,7 +76,10 @@ const DriverDashboard = ({ navigation }) => {
                     charge={driverInfo.batterySlots[slotKey].charge}
                     batteryNumber={slotKey}
                     timeHoursLeft={
-                      driverInfo.batterySlots[slotKey].Time_Left??0
+                      driverInfo.batterySlots[slotKey].Time_Left.hours??0
+                    }
+                    timeMinutesLeft={
+                      driverInfo.batterySlots[slotKey].Time_Left.remainingMinutes??0
                     }
                   />
                 </View>

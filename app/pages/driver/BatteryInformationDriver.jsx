@@ -67,8 +67,8 @@ const BatteryInformationDriver = () => {
               health={info.batterySlots[slotKey].stateOfHealth} 
               temperature={info.batterySlots[slotKey].temperature}
               lastLabel={"Time Remaining: "}
-              timeHours={info.batterySlots[slotKey].Time_Left}
-              timeMin={0}
+              timeHours={info.batterySlots[slotKey].Time_Left.hours}
+              timeMin={info.batterySlots[slotKey].Time_Left.remainingMinutes}
             />
           </View>
         ))}
