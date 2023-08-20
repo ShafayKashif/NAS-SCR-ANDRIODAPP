@@ -79,8 +79,8 @@ const BatteryInformationStation = ({ navigation }) => {
                 health={info.batterySlots[slotKey].stateOfHealth}
                 temperature={info.batterySlots[slotKey].temperature}
                 lastLabel={"Time till complete charged"}
-                timeHours={0}
-                timeMin={0}
+                timeHours={info.batterySlots[slotKey].TimeToFullCharge.hours}
+                timeMin={info.batterySlots[slotKey].TimeToFullCharge.remainingMinutes}
               />
             </View>
           ))}
