@@ -6,6 +6,7 @@ import Loading from "../../components/Loading";
 import { where } from "firebase/firestore";
 import { auth } from "../../config/firebase";
 import DividerWithText from "../../components/DividerText";
+import NavigatorBar from "../../components/NavigatorBar";
 
 import {
   DailyPackageImages,

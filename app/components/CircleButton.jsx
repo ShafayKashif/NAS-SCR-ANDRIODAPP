@@ -1,6 +1,6 @@
 import React from "react";
 import { TouchableOpacity, View, Text, StyleSheet } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 
 const CircleButton = ({ icon, text, redirectTo, size = 60 }) => {
@@ -22,7 +22,7 @@ const CircleButton = ({ icon, text, redirectTo, size = 60 }) => {
     <TouchableOpacity style={styles.button} onPress={handlePress}>
       <View style={[styles.circle, buttonSize]}>
         {icon ? (
-          <FontAwesome name={icon} size={size * 0.4} color="black" />
+          <FontAwesome5 name={icon} size={size * 0.4} color="black" />
         ) : null}
       </View>
       <Text style={styles.text}>{text}</Text>

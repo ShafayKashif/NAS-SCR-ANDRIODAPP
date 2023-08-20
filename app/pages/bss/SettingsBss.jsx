@@ -58,7 +58,7 @@ const SettingsBss = ({ navigation }) => {
         textDisplay="Edit Profile Information"
         backgroundColor="white"
         textColor="black"
-        redirectTo="UpdateProfile"
+        redirectTo="EditProfile"
       />
       <SmallButton
         textDisplay="Change Password"

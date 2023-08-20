@@ -74,13 +74,14 @@ const StationPerformance = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <NavigatorBar
+     
+      {stationInfo ? (
+        <>
+         <NavigatorBar
         onBackPress={handleBackPress}
         onSettingsPress={handleSettingsPress}
         showBackButton={true}
       />
-      {stationInfo ? (
-        <>
           <View style={{ marginTop: 50, marginBottom: 30 }}>
             <LightGreenCase initialHeight={120} initialWidth={320}>
               <View

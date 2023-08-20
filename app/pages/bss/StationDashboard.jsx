@@ -16,6 +16,8 @@ import GreenBorderCase from "../../components/GreenBorderCase";
 import BatteryComponent from "../../components/BatteryComponent";
 import NavigatorBar from "../../components/NavigatorBar";
 import NavBss from "../temporary/NavBss";
+import LightGreenCase from "../../components/LightGreenCase";
+import CircleButton from "../../components/CircleButton";
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +33,7 @@ const stylecontainer = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginTop:20,
   },
   carouselContainer: {
     flexDirection: "row",
@@ -106,10 +109,6 @@ const StationDashboard = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <NavigatorBar
-        onSettingsPress={handleSettingsPress}
-        showBackButton={false}
-      />
       {stationInfo ? (
         <ScrollView>
           <View
@@ -119,10 +118,81 @@ const StationDashboard = ({ navigation }) => {
               alignItems: "center",
             }}
           >
+            <View style={{marginTop:15}}/>
+            <NavigatorBar
+            onSettingsPress={handleSettingsPress}
+            showBackButton={false}
+          />
             {/* Temporary */}
-            <NavBss />
+            {/* <NavBss /> */}
 
-            <Text style={{ color: "white" }}>Day Fare: {rate} PKR</Text>
+            <LightGreenCase initialHeight={170} initialWidth={270}>
+              <View
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                }}
+              >
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    // alignItems: "center",
+                    // justifyContent: "left"
+                  }}
+                >
+                  <Text style={{  color: "#1e3686", fontSize: 20}}>
+                    Day Fare
+                  </Text>
+                  <View style={{display:"flex", flexDirection:"row"}}>
+
+                  <Text style={{  color: "#1e3686", fontSize: 38 }}>
+                    {rate} 
+                  </Text>
+
+                  <Text style={{  color: "#1e3686", fontSize: 20, marginTop:18 }}>
+                    PKR
+                  </Text>
+
+                  </View>
+
+                  <View style={{display:'flex', flexDirection:'row', alignItems:'space-between', marginLeft:0}}>
+                  <View>
+                    <Text style={{fontSize: 7, color:"#000", marginHorizontal:10, marginBottom:5}}>Station Performance</Text>
+                    <CircleButton icon="charging-station" size={40} redirectTo="StationPerformance" />
+
+                  </View>
+
+                  <View>
+                    <Text style={{fontSize: 7, color:"#000", marginHorizontal:10, marginBottom:5}}>Maintenance</Text>
+                    <CircleButton icon="hard-hat" size={40} redirectTo="ScheduleMaintenance" />
+
+                  </View>
+
+                  <View>
+                    <Text style={{fontSize: 7, color:"#000", marginHorizontal:20, marginBottom:5}}>Report Issues</Text>
+                    <CircleButton icon="exclamation" size={40} redirectTo="TechnicalSupportBss" />
+
+                  </View>
+
+                  </View>
+                 
+                
+                  <View>
+
+                 
+                 
+
+                  </View>
+                </View>
+
+                
+             
+              </View>
+            </LightGreenCase>
+            
+  
             <View style={stylecontainer.container}>
               <View style={stylecontainer.carouselContainer}>
                 <TouchableOpacity

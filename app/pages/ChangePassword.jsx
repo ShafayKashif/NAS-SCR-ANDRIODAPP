@@ -14,6 +14,7 @@ import { EmailAuthProvider } from "firebase/auth";
 import { reauthenticateWithCredential } from "firebase/auth";
 import {getRecord} from '../global/firebaseFunctions';
 import StationDashboard from "./bss/StationDashboard";
+import NavigatorBar from "../components/NavigatorBar";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +33,19 @@ const ChangePassword = ({ navigation }) => {
   const [newPassword, setNewPassword]=useState('');
   const [confirmNewPassword, setConfirmPassword]=useState('');
   const [designation, setDesignation]=useState('')
+
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
+  const handleSettingsPress = () => {
+    if (designation === "Rickshaw Driver"){
+      navigation.navigate("SettingsDriver"); 
+    }
+    else {
+      navigation.navigate("SettingsBss")
+    }
+  };
 
   const route = useRoute();
   const dividertext = "Change Password"
@@ -84,6 +98,11 @@ const ChangePassword = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
       <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
 
       <TextField label="Previous Password" value={previousPassword} onChange={setPreviousPassword}/>

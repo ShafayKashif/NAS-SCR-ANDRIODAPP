@@ -1,19 +1,20 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const NavigatorBar = ({ onBackPress, onSettingsPress, showBackButton }) => {
   return (
     <View style={styles.container}>
       {showBackButton && (
         <TouchableOpacity onPress={onBackPress} style={styles.leftButton}>
-          <Text style={styles.whiteText}>&lt;</Text>
+          <Text style={styles.whiteText}>❮</Text>
         </TouchableOpacity>
       )}
       <View style={styles.titleContainer}>
         <Text style={styles.greenText}>NeuBolt</Text>
       </View>
       <TouchableOpacity onPress={onSettingsPress} style={styles.rightButton}>
-        <Text style={styles.whiteText}>-</Text>
+        <Text style={styles.whiteText}>⋯</Text>
       </TouchableOpacity>
     </View>
   );
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
   },
   whiteText: {
     color: "#FFFFFF", // white color
+    fontSize: 20,
   },
   greenText: {
     color: "#58AA42", //  green color

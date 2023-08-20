@@ -40,7 +40,7 @@ const TechnicalSupportDriver = ({ navigation }) => {
   };
 
   const handleSettingsPress = () => {
-    navigation.navigate("Settings"); // Replace with the correct route name for the settings page
+    navigation.navigate("SettingsDriver"); // Replace with the correct route name for the settings page
   };
 
   const [error, setError] = useState("");

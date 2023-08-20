@@ -11,6 +11,7 @@ import DisabledTextField from "../components/DisabledTextField";
 import { auth } from "../config/firebase";
 import {getRecord, updateRecord} from '../global/firebaseFunctions';
 import {where} from 'firebase/firestore';
+import NavigatorBar from "../components/NavigatorBar";
 
 
 const styles = StyleSheet.create({
@@ -30,6 +31,20 @@ const EditProfile = ({ navigation }) => {
   const [phone, setPhone]=useState('');
   const [cnic, setCnic]=useState('');
   const [designation, setDesignation]=useState('')
+
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
+  const handleSettingsPress = () => {
+    if (designation === "Rickshaw Driver"){
+      navigation.navigate("SettingsDriver"); 
+    }
+    else {
+      navigation.navigate("SettingsBss")
+    }
+  };
+
 
   const route = useRoute();
   const dividertext = "Update Profile"
@@ -84,6 +99,11 @@ const EditProfile = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <NavigatorBar
+        onBackPress={handleBackPress}
+        onSettingsPress={handleSettingsPress}
+        showBackButton={true}
+      />
       <DividerWithText textDisplay={dividertext} style={{ marginBottom: 20 }} />
       <DisabledTextField label="Email address" value={auth.currentUser.email}/>
       <TextField label="Full Name" value={name} onChange={setName}/>
